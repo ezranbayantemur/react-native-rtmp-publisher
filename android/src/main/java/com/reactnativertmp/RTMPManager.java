@@ -19,7 +19,7 @@ import java.util.Map;
 public class RTMPManager extends SimpleViewManager<SurfaceView> {
   //TODO: "Do not place Android context classes in static fields (static reference to Publisher which has field _surfaceView pointing to SurfaceView); this is a memory leak"
   public static Publisher publisher;
-  public final String REACT_CLASS_NAME = "RCT_RTMPView";
+  public final String REACT_CLASS_NAME = "RTMPPublisher";
   SurfaceView surfaceView;
   private ThemedReactContext _reactContext;
   View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {

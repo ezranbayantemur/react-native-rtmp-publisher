@@ -16,7 +16,7 @@ type RtmpProps = {
   style: ViewStyle;
 };
 
-const ComponentName = 'RtmpView';
+const ComponentName = 'RTMPPublisher';
 
 export const RtmpView =
   UIManager.getViewManagerConfig(ComponentName) != null

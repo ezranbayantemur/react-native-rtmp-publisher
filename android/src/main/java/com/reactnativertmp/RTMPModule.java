@@ -9,7 +9,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 
 public class RTMPModule extends ReactContextBaseJavaModule {
-  private final String REACT_MODULE_NAME = "RTMPView";
+  private final String REACT_MODULE_NAME = "RTMPPublisher";
 
   public RTMPModule(@Nullable ReactApplicationContext reactContext) {
     super(reactContext);
