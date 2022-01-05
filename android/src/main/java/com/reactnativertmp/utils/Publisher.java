@@ -19,10 +19,10 @@ public class Publisher {
     _surfaceView = surfaceView;
     _rtmpCamera = new RtmpCamera1(surfaceView, connectionChecker);
 
-    connectionChecker.addListener(createConnectionListener(surfaceView.getId()));
+    connectionChecker.addListener(createConnectionListener());
   }
 
-  public ConnectionListener createConnectionListener(int id) {
+  public ConnectionListener createConnectionListener() {
     return new ConnectionListener() {
       @Override
       public void onChange(String type) {
