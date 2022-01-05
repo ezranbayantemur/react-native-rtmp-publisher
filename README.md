@@ -59,6 +59,36 @@ function publisherActions() {
 />;
 ```
 
+## Props
+| Name           |                                   Type                                           |                                   Description |
+| -------------- | :------------------------------------------------------------------------------: | --------------------------------------------: |
+| `publishURL`   |         `string`                                                                 |      Publish URL address with RTM Protocol    |
+
+## Events
+| Name                        |         Returns             |  Description                                 |
+| --------------------------  | :-------------------------: | --------------------------------------------:|
+| `onLayoutChange`            |         `null`              | Invokes on layout changes                    |
+| `onConnectionFailedRtmp`    |         `null`              | Invokes on connection fails to publish URL   |
+| `onConnectionStartedRtmp`   |         `null`              | Invokes on connection start to publish URL   |
+| `onConnectionSuccessRtmp`   |         `null`              | Invokes on connection success to publish URL |
+| `onDisconnectRtmp`          |         `null`              | Invokes on disconnect from publish URL       |
+| `onNewBitrateRtmp`          |         `null`              | Invokes on new bitrate received from URL     |
+## Methods
+| Name                |         Returns             |  Description                |
+| ------------------  | :-------------------------: | ---------------------------:|
+| `startStream`       |         `null`              | Starts the stream           |
+| `stopStream`        |         `null`              | Stops the stream            |
+| `mute`              |         `null`              | Mutes the microphone        |
+| `unmute`            |         `null`              | Unmutes the microphone      |
+| `switchCamera`      |         `null`              | Switches the camera         |
+| `getPublishURL`     |         `string`            | Gets the publish URL        |
+| `isMuted`           |         `boolean`           | Returns microphone state    |
+| `isStreaming`       |         `boolean`           | Returns streaming state     |
+| `hasCongestion`     |         `boolean`           | Returns if congestion       |
+| `isAudioPrepared`   |         `boolean`           | Returns audio prepare state |
+| `isVideoPrepared`   |         `boolean`           | Returns video prepare state |
+| `isCameraOnPreview` |         `boolean`           | Returns camera is on        |
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
