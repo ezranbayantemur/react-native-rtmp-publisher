@@ -1,6 +1,6 @@
 # react-native-rtmp
 
-RTMP publisher for React Native
+📹 Live stream RTMP publisher for React Native
 
 ## Installation
 
