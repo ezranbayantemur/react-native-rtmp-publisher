@@ -8,14 +8,55 @@ RTMP publisher for React Native
 npm install react-native-rtmp
 ```
 
+or
+
+```sh
+yarn add react-native-rtmp
+```
+
 ## Usage
 
+### Android
+
+Add Android Permission for camera
+
+```xml
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+```
+
+### React Native
+
 ```js
-import { RtmpView } from "react-native-rtmp";
+import { RTMPPublisher } from 'react-native-rtmp';
 
 // ...
 
-<RtmpView color="tomato" />
+function publisherActions() {
+  publisherRef.current.startStream();
+  publisherRef.current.stopStream();
+  publisherRef.current.mute();
+  publisherRef.current.unmute();
+  publisherRef.current.switchCamera();
+  publisherRef.current.getPublishURL();
+  publisherRef.current.isMuted();
+  publisherRef.current.isStreaming();
+  publisherRef.current.hasCongestion();
+  publisherRef.current.isAudioPrepared();
+  publisherRef.current.isVideoPrepared();
+  publisherRef.current.isCameraOnPreview();
+}
+
+<RTMPPublisher
+  ref={publisherRef}
+  publishUrl="rtmp://your-publish-url"
+  onLayoutChange={() => null}
+  onConnectionFailedRtmp={() => null}
+  onConnectionStartedRtmp={() => null}
+  onConnectionSuccessRtmp={() => null}
+  onDisconnectRtmp={() => null}
+  onNewBitrateRtmp={() => null}
+/>;
 ```
 
 ## Contributing
