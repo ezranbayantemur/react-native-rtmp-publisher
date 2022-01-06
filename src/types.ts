@@ -1,17 +1,53 @@
 import type { ViewStyle } from 'react-native';
 
 export interface RTMPPublisherRefProps {
+  /**
+   * Starts stream operation
+   */
   startStream: () => Promise<void>;
+  /**
+   * Stops stream operation
+   */
   stopStream: () => Promise<void>;
+  /**
+   * Checks stream status
+   */
   isStreaming: () => Promise<boolean>;
+  /**
+   * Checks if camera on mount
+   */
   isCameraOnPreview: () => Promise<boolean>;
+  /**
+   * Gets settled publish url
+   */
   getPublishURL: () => Promise<string>;
+  /**
+   * Checks congestion status
+   */
   hasCongestion: () => Promise<boolean>;
+  /**
+   * Checks audio status
+   */
   isAudioPrepared: () => Promise<boolean>;
+  /**
+   * Checks video status
+   */
   isVideoPrepared: () => Promise<boolean>;
+  /**
+   * Checks if mic closed
+   */
   isMuted: () => Promise<boolean>;
+  /**
+   * Mutes the mic
+   */
   mute: () => Promise<void>;
+  /**
+   * Unmutes the mic
+   */
   unmute: () => Promise<void>;
+  /**
+   * Switches the camera
+   */
   switchCamera: () => Promise<void>;
 }
 

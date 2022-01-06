@@ -9,34 +9,40 @@ import PublisherComponent, {
   NewBitrateReceivedType,
   StreamStateChangedType,
 } from './Component';
-import type { StreamState } from './types';
+import type { RTMPPublisherRefProps, StreamState } from './types';
 
 const RTMPModule = NativeModules.RTMPPublisher;
-
-interface RTMPPublisherRefProps {
-  startStream: () => Promise<void>;
-  stopStream: () => Promise<void>;
-  isStreaming: () => Promise<boolean>;
-  isCameraOnPreview: () => Promise<boolean>;
-  getPublishURL: () => Promise<string>;
-  hasCongestion: () => Promise<boolean>;
-  isAudioPrepared: () => Promise<boolean>;
-  isVideoPrepared: () => Promise<boolean>;
-  isMuted: () => Promise<boolean>;
-  mute: () => Promise<void>;
-  unmute: () => Promise<void>;
-  switchCamera: () => Promise<void>;
-}
-
 export interface RTMPPublisherProps {
   style?: ViewStyle;
   publishUrl: string;
+  /**
+   * Callback for layout changes
+   */
   onLayoutChange?: (data: null) => void;
+  /**
+   * Callback for connection fails on RTMP server
+   */
   onConnectionFailed?: (data: null) => void;
+  /**
+   * Callback for starting connection to RTMP server
+   */
   onConnectionStarted?: (data: null) => void;
+  /**
+   * Callback for connection successfully to RTMP server
+   */
   onConnectionSuccess?: (data: null) => void;
+  /**
+   * Callback for disconnect successfully to RTMP server
+   */
   onDisconnect?: (data: null) => void;
+  /**
+   * Callback for receiving new bitrate value about stream
+   */
   onNewBitrateReceived?: (data: number) => void;
+  /**
+   * Alternatively callback for changing stream state
+   * Returns parameter StreamState type
+   */
   onStreamStateChanged?: (data: StreamState) => void;
 }
 
@@ -54,64 +60,28 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
     },
     ref
   ) => {
-    /**
-     * Starts stream operation
-     */
     const startStream = async () => await RTMPModule.startStream();
 
-    /**
-     * Stops stream operation
-     */
     const stopStream = async () => await RTMPModule.stopStream();
 
-    /**
-     * Checks stream status
-     */
     const isStreaming = async () => RTMPModule.isStreaming();
 
-    /**
-     * Checks if camera on mount
-     */
     const isCameraOnPreview = async () => RTMPModule.isCameraOnPreview();
 
-    /**
-     * Gets settled publish url
-     */
     const getPublishURL = async () => RTMPModule.getPublishURL();
 
-    /**
-     * Checks congestion status
-     */
     const hasCongestion = async () => RTMPModule.hasCongestion();
 
-    /**
-     * Checks audio status
-     */
     const isAudioPrepared = async () => RTMPModule.isAudioPrepared();
 
-    /**
-     * Checks video status
-     */
     const isVideoPrepared = async () => RTMPModule.isVideoPrepared();
 
-    /**
-     * Checks if mic closed
-     */
     const isMuted = async () => RTMPModule.isMuted();
 
-    /**
-     * Mute the mic
-     */
     const mute = () => RTMPModule.mute();
 
-    /**
-     * Unmute the mic
-     */
     const unmute = () => RTMPModule.unmute();
 
-    /**
-     * Switches the camera
-     */
     const switchCamera = () => RTMPModule.switchCamera();
 
     const handleOnConnectionFailed = (e: ConnectionFailedType) => {
