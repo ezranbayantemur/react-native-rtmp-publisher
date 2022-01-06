@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
 
 import { View } from 'react-native';
-import RTMPPublisher from 'react-native-rtmp';
-import type { RTMPPublisherRefProps, StreamState } from 'src/types';
+import RTMPPublisher, {
+  RTMPPublisherRefProps,
+  StreamState,
+} from 'react-native-rtmp';
 
 import styles from './App.styles';
 
