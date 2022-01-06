@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import { View } from 'react-native';
 import RTMPPublisher from 'react-native-rtmp';
+import type { RTMPPublisherRefProps, StreamState } from 'src/types';
 
 import styles from './App.styles';
 
@@ -12,7 +13,7 @@ import usePermissions from './hooks/usePermissions';
 const PUBLISH_URL = 'YOUR-PUBLISH-URL';
 
 export default function App() {
-  const publisherRef = useRef(null);
+  const publisherRef = useRef<RTMPPublisherRefProps>(null);
   const [isStreaming, setIsStreaming] = useState<boolean>();
   const [isMuted, setIsMuted] = useState<boolean>();
 
@@ -36,30 +37,34 @@ export default function App() {
     setIsStreaming(false);
   }
 
-  function handleOnNewBitrateReceived() {
-    console.log('New Bitrate Received');
+  function handleOnNewBitrateReceived(data: number) {
+    console.log('New Bitrate Received: ' + data);
+  }
+
+  function handleOnStreamStateChanged(data: StreamState) {
+    console.log('Stream Status: ' + data);
   }
 
   function handleUnmute() {
-    publisherRef.current.unmute();
+    publisherRef.current && publisherRef.current.unmute();
     setIsMuted(false);
   }
 
   function handleMute() {
-    publisherRef.current.mute();
+    publisherRef.current && publisherRef.current.mute();
     setIsMuted(true);
   }
 
   function handleStartStream() {
-    publisherRef.current.startStream();
+    publisherRef.current && publisherRef.current.startStream();
   }
 
   function handleStopStream() {
-    publisherRef.current.stopStream();
+    publisherRef.current && publisherRef.current.stopStream();
   }
 
   function handleSwitchCamera() {
-    publisherRef.current.switchCamera();
+    publisherRef.current && publisherRef.current.switchCamera();
   }
 
   return (
@@ -69,12 +74,12 @@ export default function App() {
           ref={publisherRef}
           publishUrl={PUBLISH_URL}
           style={styles.publisher_camera}
-          onConnectionFailed={(e) => console.log(e.nativeEvent)}
-          onConnectionStarted={(e) => console.log(e.nativeEvent)}
-          onConnectionSuccess={(e) => console.log(e.nativeEvent)}
-          onDisconnect={(e) => console.log(e.nativeEvent)}
-          onNewBitrateReceived={(e) => console.log(e.nativeEvent)}
-          onStreamStateChanged={(e) => console.log(e.nativeEvent)}
+          onConnectionFailed={handleOnConnectionFailed}
+          onConnectionStarted={handleOnConnectionStarted}
+          onConnectionSuccess={handleOnConnectionSuccess}
+          onDisconnect={handleOnDisconnect}
+          onNewBitrateReceived={handleOnNewBitrateReceived}
+          onStreamStateChanged={handleOnStreamStateChanged}
         />
       )}
       <View style={styles.footer_container}>
