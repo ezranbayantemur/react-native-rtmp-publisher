@@ -5,11 +5,11 @@ export interface RTMPPublisherProps {
   ref: any;
   publishURL: string;
   onLayoutChange?: () => void;
-  onConnectionFailedRtmp?: () => void;
-  onConnectionStartedRtmp?: () => void;
-  onConnectionSuccessRtmp?: () => void;
-  onDisconnectRtmp?: () => void;
-  onNewBitrateRtmp?: () => void;
+  onConnectionFailed?: () => void;
+  onConnectionStarted?: () => void;
+  onConnectionSuccess?: () => void;
+  onDisconnect?: () => void;
+  onNewBitrateReceived?: () => void;
 }
 
 export default requireNativeComponent<RTMPPublisherProps>('RTMPPublisher');

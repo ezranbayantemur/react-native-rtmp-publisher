@@ -2,10 +2,19 @@ package com.reactnativertmp.utils;
 
 import android.view.SurfaceView;
 
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.pedro.rtplibrary.rtmp.RtmpCamera1;
 import com.reactnativertmp.interfaces.ConnectionListener;
+
+enum STREAM_STATE {
+  CONNECTING,
+  CONNECTED,
+  DISCONNECTED,
+  FAILED
+}
 
 public class Publisher {
   private final SurfaceView _surfaceView;
@@ -22,10 +31,16 @@ public class Publisher {
     connectionChecker.addListener(createConnectionListener());
   }
 
+  public RtmpCamera1 getRtmpCamera() {
+    return _rtmpCamera;
+  }
+
   public ConnectionListener createConnectionListener() {
     return new ConnectionListener() {
       @Override
       public void onChange(String type) {
+        eventEffect(type);
+
         _reactContext
           .getJSModule(RCTEventEmitter.class)
           .receiveEvent(_surfaceView.getId(), type, null);
@@ -33,10 +48,52 @@ public class Publisher {
     };
   }
 
-  public RtmpCamera1 getRtmpCamera() {
-    return _rtmpCamera;
+  private void eventEffect(String eventType) {
+    switch (eventType) {
+      case "onConnectionStarted": {
+        WritableMap event = Arguments.createMap();
+        event.putString("status", String.valueOf(STREAM_STATE.CONNECTING));
+
+        _reactContext
+          .getJSModule(RCTEventEmitter.class)
+          .receiveEvent(_surfaceView.getId(), "onStreamStateChanged", event);
+        break;
+      }
+
+      case "onConnectionSuccess": {
+        WritableMap event = Arguments.createMap();
+        event.putString("status", String.valueOf(STREAM_STATE.CONNECTED));
+
+        _reactContext
+          .getJSModule(RCTEventEmitter.class)
+          .receiveEvent(_surfaceView.getId(), "onStreamStateChanged", event);
+        break;
+      }
+
+      case "onDisconnect": {
+        WritableMap event = Arguments.createMap();
+        event.putString("status", String.valueOf(STREAM_STATE.DISCONNECTED));
+
+        _reactContext
+          .getJSModule(RCTEventEmitter.class)
+          .receiveEvent(_surfaceView.getId(), "onStreamStateChanged", event);
+        break;
+      }
+
+      case "onConnectionFailed": {
+        WritableMap event = Arguments.createMap();
+        event.putString("status", String.valueOf(STREAM_STATE.FAILED));
+
+        _reactContext
+          .getJSModule(RCTEventEmitter.class)
+          .receiveEvent(_surfaceView.getId(), "onStreamStateChanged", event);
+        break;
+      }
+    }
   }
 
+
+  //region COMPONENT METHODS
   public String getPublishURL() {
     return _publishURL;
   }
@@ -109,5 +166,6 @@ public class Publisher {
       e.printStackTrace();
     }
   }
+  //endregion
 
 }

@@ -18,25 +18,25 @@ export default function App() {
 
   const { permissionGranted } = usePermissions();
 
-  function handleOnConnectionFailedRtmp() {
+  function handleOnConnectionFailed() {
     console.log('Connection Failed');
   }
 
-  function handleOnConnectionStartedRtmp() {
+  function handleOnConnectionStarted() {
     console.log('Connection Started');
   }
 
-  function handleOnConnectionSuccessRtmp() {
+  function handleOnConnectionSuccess() {
     console.log('Connected');
     setIsStreaming(true);
   }
 
-  function handleOnDisconnectRtmp() {
+  function handleOnDisconnect() {
     console.log('Disconnected');
     setIsStreaming(false);
   }
 
-  function handleOnNewBitrateRtmp() {
+  function handleOnNewBitrateReceived() {
     console.log('New Bitrate Received');
   }
 
@@ -69,11 +69,12 @@ export default function App() {
           ref={publisherRef}
           publishUrl={PUBLISH_URL}
           style={styles.publisher_camera}
-          onConnectionFailedRtmp={handleOnConnectionFailedRtmp}
-          onConnectionStartedRtmp={handleOnConnectionStartedRtmp}
-          onConnectionSuccessRtmp={handleOnConnectionSuccessRtmp}
-          onDisconnectRtmp={handleOnDisconnectRtmp}
-          onNewBitrateRtmp={handleOnNewBitrateRtmp}
+          onConnectionFailed={handleOnConnectionFailed}
+          onConnectionStarted={handleOnConnectionStarted}
+          onConnectionSuccess={handleOnConnectionSuccess}
+          onDisconnect={handleOnDisconnect}
+          onNewBitrateReceived={handleOnNewBitrateReceived}
+          onStreamStateChanged={(e) => console.log(e.nativeEvent)}
         />
       )}
       <View style={styles.footer_container}>

@@ -18,14 +18,14 @@ public class ConnectionChecker implements ConnectCheckerRtmp {
   @Override
   public void onAuthErrorRtmp() {
     for (ConnectionListener l : listeners) {
-      l.onChange("onAuthErrorRtmp");
+      l.onChange("onAuthError");
     }
   }
 
   @Override
   public void onAuthSuccessRtmp() {
     for (ConnectionListener l : listeners) {
-      l.onChange("onAuthSuccessRtmp");
+      l.onChange("onAuthSuccess");
     }
   }
 
@@ -33,7 +33,7 @@ public class ConnectionChecker implements ConnectCheckerRtmp {
   @Override
   public void onConnectionFailedRtmp(@NonNull String s) {
     for (ConnectionListener l : listeners) {
-      l.onChange("onConnectionFailedRtmp");
+      l.onChange("onConnectionFailed");
     }
   }
 
@@ -41,21 +41,21 @@ public class ConnectionChecker implements ConnectCheckerRtmp {
   @Override
   public void onConnectionStartedRtmp(@NonNull String s) {
     for (ConnectionListener l : listeners) {
-      l.onChange("onConnectionStartedRtmp");
+      l.onChange("onConnectionStarted");
     }
   }
 
   @Override
   public void onConnectionSuccessRtmp() {
     for (ConnectionListener l : listeners) {
-      l.onChange("onConnectionSuccessRtmp");
+      l.onChange("onConnectionSuccess");
     }
   }
 
   @Override
   public void onDisconnectRtmp() {
     for (ConnectionListener l : listeners) {
-      l.onChange("onDisconnectRtmp");
+      l.onChange("onDisconnect");
     }
   }
 
@@ -63,7 +63,7 @@ public class ConnectionChecker implements ConnectCheckerRtmp {
   @Override
   public void onNewBitrateRtmp(long b) {
     for (ConnectionListener l : listeners) {
-      l.onChange("onNewBitrateRtmp");
+      l.onChange("onNewBitrateReceived");
     }
   }
 }

@@ -22,6 +22,7 @@ public class RTMPManager extends SimpleViewManager<SurfaceView> {
   public final String REACT_CLASS_NAME = "RTMPPublisher";
   SurfaceView surfaceView;
   private ThemedReactContext _reactContext;
+
   View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {
     @Override
     public void onLayoutChange(@NonNull View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
@@ -60,20 +61,14 @@ public class RTMPManager extends SimpleViewManager<SurfaceView> {
   @Nullable
   @Override
   public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
-    return MapBuilder.of(
-      "onLayoutChange",
-      MapBuilder.of("registrationName", "onLayoutChange"),
-      "onConnectionFailedRtmp",
-      MapBuilder.of("registrationName", "onConnectionFailedRtmp"),
-      "onConnectionStartedRtmp",
-      MapBuilder.of("registrationName", "onConnectionStartedRtmp"),
-      "onConnectionSuccessRtmp",
-      MapBuilder.of("registrationName", "onConnectionSuccessRtmp"),
-      "onDisconnectRtmp",
-      MapBuilder.of("registrationName", "onDisconnectRtmp"),
-      "onNewBitrateRtmp",
-      MapBuilder.of("registrationName", "onNewBitrateRtmp")
-    );
+    return MapBuilder.<String, Object>builder()
+      .put("onDisconnect", MapBuilder.of("registrationName", "onDisconnect"))
+      .put("onLayoutChange", MapBuilder.of("registrationName", "onLayoutChange"))
+      .put("onConnectionFailed", MapBuilder.of("registrationName", "onConnectionFailed"))
+      .put("onConnectionStarted", MapBuilder.of("registrationName", "onConnectionStarted"))
+      .put("onConnectionSuccess", MapBuilder.of("registrationName", "onConnectionSuccess"))
+      .put("onNewBitrateReceived", MapBuilder.of("registrationName", "onNewBitrateReceived"))
+      .put("onStreamStateChanged", MapBuilder.of("registrationName", "onStreamStateChanged"))
+      .build();
   }
-
 }
