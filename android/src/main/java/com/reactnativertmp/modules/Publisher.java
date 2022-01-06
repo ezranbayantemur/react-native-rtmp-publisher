@@ -9,15 +9,9 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.pedro.rtplibrary.rtmp.RtmpCamera1;
+import com.reactnativertmp.enums.StreamState;
 import com.reactnativertmp.interfaces.ConnectionListener;
 import com.reactnativertmp.utils.ObjectCaster;
-
-enum STREAM_STATE {
-  CONNECTING,
-  CONNECTED,
-  DISCONNECTED,
-  FAILED
-}
 
 public class Publisher {
   private final SurfaceView _surfaceView;
@@ -56,7 +50,7 @@ public class Publisher {
     switch (eventType) {
       case "onConnectionStarted": {
         WritableMap event = Arguments.createMap();
-        event.putString("status", String.valueOf(STREAM_STATE.CONNECTING));
+        event.putString("status", String.valueOf(StreamState.CONNECTING));
 
         _reactContext
           .getJSModule(RCTEventEmitter.class)
@@ -66,7 +60,7 @@ public class Publisher {
 
       case "onConnectionSuccess": {
         WritableMap event = Arguments.createMap();
-        event.putString("status", String.valueOf(STREAM_STATE.CONNECTED));
+        event.putString("status", String.valueOf(StreamState.CONNECTED));
 
         _reactContext
           .getJSModule(RCTEventEmitter.class)
@@ -76,7 +70,7 @@ public class Publisher {
 
       case "onDisconnect": {
         WritableMap event = Arguments.createMap();
-        event.putString("status", String.valueOf(STREAM_STATE.DISCONNECTED));
+        event.putString("status", String.valueOf(StreamState.DISCONNECTED));
 
         _reactContext
           .getJSModule(RCTEventEmitter.class)
@@ -86,7 +80,7 @@ public class Publisher {
 
       case "onConnectionFailed": {
         WritableMap event = Arguments.createMap();
-        event.putString("status", String.valueOf(STREAM_STATE.FAILED));
+        event.putString("status", String.valueOf(StreamState.FAILED));
 
         _reactContext
           .getJSModule(RCTEventEmitter.class)
