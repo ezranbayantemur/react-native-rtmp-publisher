@@ -69,11 +69,11 @@ export default function App() {
           ref={publisherRef}
           publishUrl={PUBLISH_URL}
           style={styles.publisher_camera}
-          onConnectionFailed={handleOnConnectionFailed}
-          onConnectionStarted={handleOnConnectionStarted}
-          onConnectionSuccess={handleOnConnectionSuccess}
-          onDisconnect={handleOnDisconnect}
-          onNewBitrateReceived={handleOnNewBitrateReceived}
+          onConnectionFailed={(e) => console.log(e.nativeEvent)}
+          onConnectionStarted={(e) => console.log(e.nativeEvent)}
+          onConnectionSuccess={(e) => console.log(e.nativeEvent)}
+          onDisconnect={(e) => console.log(e.nativeEvent)}
+          onNewBitrateReceived={(e) => console.log(e.nativeEvent)}
           onStreamStateChanged={(e) => console.log(e.nativeEvent)}
         />
       )}

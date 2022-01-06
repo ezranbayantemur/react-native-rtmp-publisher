@@ -1,4 +1,4 @@
-package com.reactnativertmp.utils;
+package com.reactnativertmp.modules;
 
 
 import android.view.SurfaceHolder;

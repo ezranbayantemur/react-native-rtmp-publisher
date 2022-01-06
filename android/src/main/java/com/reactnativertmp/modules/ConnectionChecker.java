@@ -1,4 +1,4 @@
-package com.reactnativertmp.utils;
+package com.reactnativertmp.modules;
 
 import androidx.annotation.NonNull;
 
@@ -18,14 +18,14 @@ public class ConnectionChecker implements ConnectCheckerRtmp {
   @Override
   public void onAuthErrorRtmp() {
     for (ConnectionListener l : listeners) {
-      l.onChange("onAuthError");
+      l.onChange("onAuthError", null);
     }
   }
 
   @Override
   public void onAuthSuccessRtmp() {
     for (ConnectionListener l : listeners) {
-      l.onChange("onAuthSuccess");
+      l.onChange("onAuthSuccess", null);
     }
   }
 
@@ -33,7 +33,7 @@ public class ConnectionChecker implements ConnectCheckerRtmp {
   @Override
   public void onConnectionFailedRtmp(@NonNull String s) {
     for (ConnectionListener l : listeners) {
-      l.onChange("onConnectionFailed");
+      l.onChange("onConnectionFailed", null);
     }
   }
 
@@ -41,21 +41,21 @@ public class ConnectionChecker implements ConnectCheckerRtmp {
   @Override
   public void onConnectionStartedRtmp(@NonNull String s) {
     for (ConnectionListener l : listeners) {
-      l.onChange("onConnectionStarted");
+      l.onChange("onConnectionStarted", null);
     }
   }
 
   @Override
   public void onConnectionSuccessRtmp() {
     for (ConnectionListener l : listeners) {
-      l.onChange("onConnectionSuccess");
+      l.onChange("onConnectionSuccess", null);
     }
   }
 
   @Override
   public void onDisconnectRtmp() {
     for (ConnectionListener l : listeners) {
-      l.onChange("onDisconnect");
+      l.onChange("onDisconnect", null);
     }
   }
 
@@ -63,7 +63,7 @@ public class ConnectionChecker implements ConnectCheckerRtmp {
   @Override
   public void onNewBitrateRtmp(long b) {
     for (ConnectionListener l : listeners) {
-      l.onChange("onNewBitrateReceived");
+      l.onChange("onNewBitrateReceived", b);
     }
   }
 }

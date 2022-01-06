@@ -11,8 +11,8 @@ import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
-import com.reactnativertmp.utils.Publisher;
-import com.reactnativertmp.utils.SurfaceHolderHelper;
+import com.reactnativertmp.modules.Publisher;
+import com.reactnativertmp.modules.SurfaceHolderHelper;
 
 import java.util.Map;
 

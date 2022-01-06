@@ -1,6 +1,8 @@
-package com.reactnativertmp.utils;
+package com.reactnativertmp.modules;
 
 import android.view.SurfaceView;
+
+import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
@@ -8,6 +10,7 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.pedro.rtplibrary.rtmp.RtmpCamera1;
 import com.reactnativertmp.interfaces.ConnectionListener;
+import com.reactnativertmp.utils.ObjectCaster;
 
 enum STREAM_STATE {
   CONNECTING,
@@ -38,17 +41,18 @@ public class Publisher {
   public ConnectionListener createConnectionListener() {
     return new ConnectionListener() {
       @Override
-      public void onChange(String type) {
+      public void onChange(String type, Object data) {
         eventEffect(type);
+        WritableMap eventData = ObjectCaster.caster(data);
 
-        _reactContext
-          .getJSModule(RCTEventEmitter.class)
-          .receiveEvent(_surfaceView.getId(), type, null);
+          _reactContext
+            .getJSModule(RCTEventEmitter.class)
+            .receiveEvent(_surfaceView.getId(), type, eventData);
       }
     };
   }
 
-  private void eventEffect(String eventType) {
+  private void eventEffect(@NonNull String eventType) {
     switch (eventType) {
       case "onConnectionStarted": {
         WritableMap event = Arguments.createMap();
