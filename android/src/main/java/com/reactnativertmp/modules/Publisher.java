@@ -50,7 +50,7 @@ public class Publisher {
     switch (eventType) {
       case "onConnectionStarted": {
         WritableMap event = Arguments.createMap();
-        event.putString("status", String.valueOf(StreamState.CONNECTING));
+        event.putString("data", String.valueOf(StreamState.CONNECTING));
 
         _reactContext
           .getJSModule(RCTEventEmitter.class)
@@ -60,7 +60,7 @@ public class Publisher {
 
       case "onConnectionSuccess": {
         WritableMap event = Arguments.createMap();
-        event.putString("status", String.valueOf(StreamState.CONNECTED));
+        event.putString("data", String.valueOf(StreamState.CONNECTED));
 
         _reactContext
           .getJSModule(RCTEventEmitter.class)
@@ -70,7 +70,7 @@ public class Publisher {
 
       case "onDisconnect": {
         WritableMap event = Arguments.createMap();
-        event.putString("status", String.valueOf(StreamState.DISCONNECTED));
+        event.putString("data", String.valueOf(StreamState.DISCONNECTED));
 
         _reactContext
           .getJSModule(RCTEventEmitter.class)
@@ -80,7 +80,7 @@ public class Publisher {
 
       case "onConnectionFailed": {
         WritableMap event = Arguments.createMap();
-        event.putString("status", String.valueOf(StreamState.FAILED));
+        event.putString("data", String.valueOf(StreamState.FAILED));
 
         _reactContext
           .getJSModule(RCTEventEmitter.class)
