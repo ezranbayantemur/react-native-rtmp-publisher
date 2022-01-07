@@ -33,7 +33,7 @@ public class ConnectionChecker implements ConnectCheckerRtmp {
   @Override
   public void onConnectionFailedRtmp(@NonNull String s) {
     for (ConnectionListener l : listeners) {
-      l.onChange("onConnectionFailed", null);
+      l.onChange("onConnectionFailed", s);
     }
   }
 
@@ -41,7 +41,7 @@ public class ConnectionChecker implements ConnectCheckerRtmp {
   @Override
   public void onConnectionStartedRtmp(@NonNull String s) {
     for (ConnectionListener l : listeners) {
-      l.onChange("onConnectionStarted", null);
+      l.onChange("onConnectionStarted", s);
     }
   }
 

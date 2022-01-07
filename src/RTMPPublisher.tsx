@@ -22,11 +22,11 @@ export interface RTMPPublisherProps {
   /**
    * Callback for connection fails on RTMP server
    */
-  onConnectionFailed?: (data: null) => void;
+  onConnectionFailed?: (data: string) => void;
   /**
    * Callback for starting connection to RTMP server
    */
-  onConnectionStarted?: (data: null) => void;
+  onConnectionStarted?: (data: string) => void;
   /**
    * Callback for connection successfully to RTMP server
    */

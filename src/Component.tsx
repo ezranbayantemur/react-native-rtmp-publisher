@@ -8,8 +8,8 @@ import type { StreamState } from './types';
 type RTMPData<T> = { data: T };
 
 export type LayoutChangeType = NativeSyntheticEvent<RTMPData<null>>;
-export type ConnectionFailedType = NativeSyntheticEvent<RTMPData<null>>;
-export type ConnectionStartedType = NativeSyntheticEvent<RTMPData<null>>;
+export type ConnectionFailedType = NativeSyntheticEvent<RTMPData<string>>;
+export type ConnectionStartedType = NativeSyntheticEvent<RTMPData<string>>;
 export type ConnectionSuccessType = NativeSyntheticEvent<RTMPData<null>>;
 export type DisconnectType = NativeSyntheticEvent<RTMPData<null>>;
 export type NewBitrateReceivedType = NativeSyntheticEvent<RTMPData<number>>;

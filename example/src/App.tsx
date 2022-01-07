@@ -5,6 +5,7 @@ import RTMPPublisher, {
   RTMPPublisherRefProps,
   StreamState,
 } from 'react-native-rtmp-publisher';
+import Config from 'react-native-config';
 
 import styles from './App.styles';
 
@@ -12,7 +13,7 @@ import Button from './components/Button';
 import LiveBadge from './components/LiveBadge';
 import usePermissions from './hooks/usePermissions';
 
-const PUBLISH_URL = 'YOUR-PUBLISH-URL';
+const PUBLISH_URL = Config.PUBLISH_URL;
 
 export default function App() {
   const publisherRef = useRef<RTMPPublisherRefProps>(null);
@@ -21,12 +22,12 @@ export default function App() {
 
   const { permissionGranted } = usePermissions();
 
-  function handleOnConnectionFailed() {
-    console.log('Connection Failed');
+  function handleOnConnectionFailed(data: String) {
+    console.log('Connection Failed: ' + data);
   }
 
-  function handleOnConnectionStarted() {
-    console.log('Connection Started');
+  function handleOnConnectionStarted(data: String) {
+    console.log('Connection Started: ' + data);
   }
 
   function handleOnConnectionSuccess() {
