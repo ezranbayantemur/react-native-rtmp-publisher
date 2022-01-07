@@ -1,4 +1,4 @@
-package com.reactnativertmp.modules;
+package com.reactnativertmppublisher.modules;
 
 
 import android.view.SurfaceHolder;

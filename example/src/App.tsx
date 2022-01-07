@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import RTMPPublisher, {
   RTMPPublisherRefProps,
   StreamState,
-} from 'react-native-rtmp';
+} from 'react-native-rtmp-publisher';
 
 import styles from './App.styles';
 

@@ -1,4 +1,4 @@
-package com.reactnativertmp.interfaces;
+package com.reactnativertmppublisher.interfaces;
 
 import androidx.annotation.Nullable;
 

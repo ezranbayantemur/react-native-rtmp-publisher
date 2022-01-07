@@ -1,4 +1,4 @@
-package com.reactnativertmp;
+package com.reactnativertmppublisher;
 
 import androidx.annotation.NonNull;
 

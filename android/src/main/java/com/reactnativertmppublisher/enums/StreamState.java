@@ -1,4 +1,4 @@
-package com.reactnativertmp.enums;
+package com.reactnativertmppublisher.enums;
 
 public enum StreamState {
   CONNECTING,

@@ -1,9 +1,9 @@
-package com.reactnativertmp.modules;
+package com.reactnativertmppublisher.modules;
 
 import androidx.annotation.NonNull;
 
 import com.pedro.rtmp.utils.ConnectCheckerRtmp;
-import com.reactnativertmp.interfaces.ConnectionListener;
+import com.reactnativertmppublisher.interfaces.ConnectionListener;
 
 import java.util.ArrayList;
 import java.util.List;

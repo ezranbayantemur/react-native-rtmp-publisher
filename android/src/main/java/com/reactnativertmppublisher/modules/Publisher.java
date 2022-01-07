@@ -1,4 +1,4 @@
-package com.reactnativertmp.modules;
+package com.reactnativertmppublisher.modules;
 
 import android.view.SurfaceView;
 
@@ -9,9 +9,9 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.pedro.rtplibrary.rtmp.RtmpCamera1;
-import com.reactnativertmp.enums.StreamState;
-import com.reactnativertmp.interfaces.ConnectionListener;
-import com.reactnativertmp.utils.ObjectCaster;
+import com.reactnativertmppublisher.enums.StreamState;
+import com.reactnativertmppublisher.interfaces.ConnectionListener;
+import com.reactnativertmppublisher.utils.ObjectCaster;
 
 public class Publisher {
   private final SurfaceView _surfaceView;

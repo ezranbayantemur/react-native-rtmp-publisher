@@ -1,4 +1,4 @@
-package com.reactnativertmp;
+package com.reactnativertmppublisher;
 
 import android.view.SurfaceView;
 import android.view.View;
@@ -11,8 +11,8 @@ import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
-import com.reactnativertmp.modules.Publisher;
-import com.reactnativertmp.modules.SurfaceHolderHelper;
+import com.reactnativertmppublisher.modules.Publisher;
+import com.reactnativertmppublisher.modules.SurfaceHolderHelper;
 
 import java.util.Map;
 

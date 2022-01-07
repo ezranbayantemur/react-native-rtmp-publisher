@@ -1,4 +1,4 @@
-# react-native-rtmp
+# react-native-rtmp-publisher
 
 📹 Live stream RTMP publisher for React Native
 
@@ -7,13 +7,13 @@
 ## Installation
 
 ```sh
-npm install react-native-rtmp
+npm install react-native-rtmp-publisher
 ```
 
 or
 
 ```sh
-yarn add react-native-rtmp
+yarn add react-native-rtmp-publisher
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ Add Android Permission for camera
 ### React Native
 
 ```js
-import { RTMPPublisher } from 'react-native-rtmp';
+import { RTMPPublisher } from 'react-native-rtmp-publisher';
 
 // ...
 

@@ -8,7 +8,7 @@ target 'RtmpExample' do
 
   use_react_native!(:path => config["reactNativePath"])
 
-  pod 'react-native-rtmp', :path => '../..'
+  pod 'react-native-rtmp-publisher', :path => '../..'
 
   # Enables Flipper.
   #
