@@ -56,12 +56,12 @@ function publisherActions() {
   ref={publisherRef}
   publishUrl="rtmp://your-publish-url"
   onLayoutChange={() => null}
-  onConnectionFailedRtmp={() => null}
-  onConnectionStartedRtmp={() => null}
+  onConnectionFailedRtmp={(d: string) => null}
+  onConnectionStartedRtmp={(d: string) => null}
   onConnectionSuccessRtmp={() => null}
   onDisconnectRtmp={() => null}
-  onNewBitrateRtmp={() => null}
-  onStreamStateChanged={(s: streamState) => null}
+  onNewBitrateRtmp={(d: number) => null}
+  onStreamStateChanged={(d: streamState) => null}
 />;
 ```
 
@@ -74,11 +74,11 @@ function publisherActions() {
 | Name                        |   Returns     |  Description                                                                              |
 | --------------------------  | :------------:| -----------------------------------------------------------------------------------------:|
 | `onLayoutChange`            |  `null`       | Invokes on layout changes                                                                 |
-| `onConnectionFailed`        |  `null`       | Invokes on connection fails to publish URL                                                |
-| `onConnectionStarted`       |  `null`       | Invokes on connection start to publish URL                                                |
+| `onConnectionFailed`        |  `string`     | Invokes on connection fails with reason to publish URL                                    |
+| `onConnectionStarted`       |  `string`     | Invokes on connection start to publish URL                                                |
 | `onConnectionSuccess`       |  `null`       | Invokes on connection success to publish URL                                              |
 | `onDisconnect`              |  `null`       | Invokes on disconnect from publish URL                                                    |
-| `onNewBitrateReceived`      |  `null`       | Invokes on new bitrate received from URL                                                  |
+| `onNewBitrateReceived`      |  `number`     | Invokes on new bitrate received with bitrate from URL                                     |
 | `onStreamStateChanged`      | `streamState` | Invokes on stream state changes. It can be use alternatively for above connection events. | 
 
 ## Methods
