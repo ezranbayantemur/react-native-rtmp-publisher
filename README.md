@@ -78,7 +78,7 @@ function publisherActions() {
 | `onConnectionStarted`       |  `string`     | Invokes on connection start to publish URL                                                |
 | `onConnectionSuccess`       |  `null`       | Invokes on connection success to publish URL                                              |
 | `onDisconnect`              |  `null`       | Invokes on disconnect from publish URL                                                    |
-| `onNewBitrateReceived`      |  `number`     | Invokes on new bitrate received with bitrate from URL                                     |
+| `onNewBitrateReceived`      |  `number`     | Invokes with new bitrate value on when bitrate received from URL                          |
 | `onStreamStateChanged`      | `streamState` | Invokes on stream state changes. It can be use alternatively for above connection events. | 
 
 ## Methods
