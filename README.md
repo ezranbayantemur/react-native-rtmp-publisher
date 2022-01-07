@@ -66,9 +66,9 @@ function publisherActions() {
 ```
 
 ## Props
-| Name           |                                   Type                                           |                                   Description |
-| -------------- | :------------------------------------------------------------------------------: | --------------------------------------------: |
-| `publishURL`   |         `string`                                                                 |      Publish URL address with RTM Protocol    |
+| Name           |    Type    |   Required   |   Description                         |
+| -------------- | :--------: | :----------: |:-------------------------------------:|
+| `publishUrl`   |  `string`  |   `true`     | Publish URL address with RTM Protocol |
 
 ## Events
 | Name                        |   Returns     |  Description                                                                              |
