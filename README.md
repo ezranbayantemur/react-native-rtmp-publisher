@@ -37,31 +37,31 @@ import { RTMPPublisher } from 'react-native-rtmp-publisher';
 
 // ...
 
-function publisherActions() {
-  publisherRef.current.startStream();
-  publisherRef.current.stopStream();
-  publisherRef.current.mute();
-  publisherRef.current.unmute();
-  publisherRef.current.switchCamera();
-  publisherRef.current.getPublishURL();
-  publisherRef.current.isMuted();
-  publisherRef.current.isStreaming();
-  publisherRef.current.hasCongestion();
-  publisherRef.current.isAudioPrepared();
-  publisherRef.current.isVideoPrepared();
-  publisherRef.current.isCameraOnPreview();
+async function publisherActions() {
+  await publisherRef.current.startStream();
+  await publisherRef.current.stopStream();
+  await publisherRef.current.mute();
+  await publisherRef.current.unmute();
+  await publisherRef.current.switchCamera();
+  await publisherRef.current.getPublishURL();
+  await publisherRef.current.isMuted();
+  await publisherRef.current.isStreaming();
+  await publisherRef.current.hasCongestion();
+  await publisherRef.current.isAudioPrepared();
+  await publisherRef.current.isVideoPrepared();
+  await publisherRef.current.isCameraOnPreview();
 }
 
 <RTMPPublisher
   ref={publisherRef}
   publishUrl="rtmp://your-publish-url"
   onLayoutChange={() => null}
-  onConnectionFailedRtmp={(d: string) => null}
-  onConnectionStartedRtmp={(d: string) => null}
+  onConnectionFailedRtmp={() => null}
+  onConnectionStartedRtmp={() => null}
   onConnectionSuccessRtmp={() => null}
   onDisconnectRtmp={() => null}
-  onNewBitrateRtmp={(d: number) => null}
-  onStreamStateChanged={(d: streamState) => null}
+  onNewBitrateRtmp={() => null}
+  onStreamStateChanged={(s: streamState) => null}
 />;
 ```
 
@@ -74,28 +74,28 @@ function publisherActions() {
 | Name                        |   Returns     |  Description                                                                              |
 | --------------------------  | :------------:| -----------------------------------------------------------------------------------------:|
 | `onLayoutChange`            |  `null`       | Invokes on layout changes                                                                 |
-| `onConnectionFailed`        |  `string`     | Invokes on connection fails with reason to publish URL                                    |
-| `onConnectionStarted`       |  `string`     | Invokes on connection start to publish URL                                                |
+| `onConnectionFailed`        |  `null`       | Invokes on connection fails to publish URL                                                |
+| `onConnectionStarted`       |  `null`       | Invokes on connection start to publish URL                                                |
 | `onConnectionSuccess`       |  `null`       | Invokes on connection success to publish URL                                              |
 | `onDisconnect`              |  `null`       | Invokes on disconnect from publish URL                                                    |
-| `onNewBitrateReceived`      |  `number`     | Invokes with new bitrate value on when bitrate received from URL                          |
+| `onNewBitrateReceived`      |  `null`       | Invokes on new bitrate received from URL                                                  |
 | `onStreamStateChanged`      | `streamState` | Invokes on stream state changes. It can be use alternatively for above connection events. | 
 
 ## Methods
 | Name                |         Returns             |  Description                |
 | ------------------  | :-------------------------: | ---------------------------:|
-| `startStream`       |         `null`              | Starts the stream           |
-| `stopStream`        |         `null`              | Stops the stream            |
-| `mute`              |         `null`              | Mutes the microphone        |
-| `unmute`            |         `null`              | Unmutes the microphone      |
-| `switchCamera`      |         `null`              | Switches the camera         |
-| `getPublishURL`     |         `string`            | Gets the publish URL        |
-| `isMuted`           |         `boolean`           | Returns microphone state    |
-| `isStreaming`       |         `boolean`           | Returns streaming state     |
-| `hasCongestion`     |         `boolean`           | Returns if congestion       |
-| `isAudioPrepared`   |         `boolean`           | Returns audio prepare state |
-| `isVideoPrepared`   |         `boolean`           | Returns video prepare state |
-| `isCameraOnPreview` |         `boolean`           | Returns camera is on        |
+| `startStream`       |         `Promise<null>`              | Starts the stream           |
+| `stopStream`        |         `Promise<null>`              | Stops the stream            |
+| `mute`              |         `Promise<null>`              | Mutes the microphone        |
+| `unmute`            |         `Promise<null>`              | Unmutes the microphone      |
+| `switchCamera`      |         `Promise<null>`              | Switches the camera         |
+| `getPublishURL`     |         `Promise<string>`            | Gets the publish URL        |
+| `isMuted`           |         `Promise<boolean>`           | Returns microphone state    |
+| `isStreaming`       |         `Promise<boolean>`           | Returns streaming state     |
+| `hasCongestion`     |         `Promise<boolean>`           | Returns if congestion       |
+| `isAudioPrepared`   |         `Promise<boolean>`           | Returns audio prepare state |
+| `isVideoPrepared`   |         `Promise<boolean>`           | Returns video prepare state |
+| `isCameraOnPreview` |         `Promise<boolean>`           | Returns camera is on        |
 
 
 ## Types
