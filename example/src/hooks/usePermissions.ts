@@ -13,6 +13,7 @@ function usePermissions() {
 
   async function getPermissions() {
     if (Platform.OS !== 'android') {
+      setPermissionGranted(true);
       return;
     }
 
