@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 
-		5E555C0D2413F4C50049A1A2 /* Rtmp.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* Rtmp.m */; };
+		5E555C0D2413F4C50049A1A2 /* RtmpPublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RtmpPublisher.m */; };
+		F4FF95D7245B92E800C19C63 /*  RtmpPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  RtmpPublisher.swift */; };
 
 /* End PBXBuildFile section */
 
@@ -25,10 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libRtmp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRtmp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		134814201AA4EA6300B7C361 /* libRtmpPublisher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRtmpPublisher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 
-		B3E7B5881CC2AC0600A0062D /* Rtmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rtmp.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* Rtmp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rtmp.m; sourceTree = "<group>"; };
+		B3E7B5891CC2AC0600A0062D /* RtmpPublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RtmpPublisher.m; sourceTree = "<group>"; };
+		F4FF95D5245B92E700C19C63 /* RtmpPublisher-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RtmpPublisher-Bridging-Header.h"; sourceTree = "<group>"; };
+		F4FF95D6245B92E800C19C63 /* RtmpPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RtmpPublisher.swift; sourceTree = "<group>"; };
 
 /* End PBXFileReference section */
 
@@ -46,7 +48,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libRtmp.a */,
+				134814201AA4EA6300B7C361 /* libRtmpPublisher.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,8 +57,9 @@
 			isa = PBXGroup;
 			children = (
 
-				B3E7B5881CC2AC0600A0062D /* Rtmp.h */,
-				B3E7B5891CC2AC0600A0062D /* Rtmp.m */,
+				F4FF95D6245B92E800C19C63 /* RtmpPublisher.swift */,
+				B3E7B5891CC2AC0600A0062D /* RtmpPublisher.m */,
+				F4FF95D5245B92E700C19C63 /* RtmpPublisher-Bridging-Header.h */,
 
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
@@ -65,9 +68,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* Rtmp */ = {
+		58B511DA1A9E6C8500147676 /* RtmpPublisher */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "Rtmp" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RtmpPublisher" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -77,9 +80,9 @@
 			);
 			dependencies = (
 			);
-			name = Rtmp;
+			name = RtmpPublisher;
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libRtmp.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libRtmpPublisher.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -96,7 +99,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "Rtmp" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RtmpPublisher" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -109,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* Rtmp */,
+				58B511DA1A9E6C8500147676 /* RtmpPublisher */,
 			);
 		};
 /* End PBXProject section */
@@ -120,7 +123,8 @@
 			buildActionMask = 2147483647;
 			files = (
 
-				B3E7B58A1CC2AC0600A0062D /* Rtmp.m in Sources */,
+				F4FF95D7245B92E800C19C63 /* RtmpPublisher.swift in Sources */,
+				B3E7B58A1CC2AC0600A0062D /* RtmpPublisher.m in Sources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,8 +236,12 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = Rtmp;
+				PRODUCT_NAME = RtmpPublisher;
 				SKIP_INSTALL = YES;
+
+				SWIFT_OBJC_BRIDGING_HEADER = "RtmpPublisher-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 
 			};
 			name = Debug;
@@ -249,8 +257,11 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = Rtmp;
+				PRODUCT_NAME = RtmpPublisher;
 				SKIP_INSTALL = YES;
+
+				SWIFT_OBJC_BRIDGING_HEADER = "RtmpPublisher-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 
 			};
 			name = Release;
@@ -258,7 +269,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "Rtmp" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RtmpPublisher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -267,7 +278,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "Rtmp" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RtmpPublisher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,
