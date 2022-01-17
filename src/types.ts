@@ -53,8 +53,8 @@ export interface RTMPPublisherRefProps {
 
 export interface RTMPPublisherProps {
   style?: ViewStyle;
-  publishURL: string;
-  onLayoutChange?: (e: null) => void;
+  streamURL: string;
+  streamName: string;
   onConnectionFailed?: (e: null) => void;
   onConnectionStarted?: (e: null) => void;
   onConnectionSuccess?: (e: null) => void;

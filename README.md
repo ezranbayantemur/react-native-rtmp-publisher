@@ -54,8 +54,8 @@ async function publisherActions() {
 
 <RTMPPublisher
   ref={publisherRef}
-  publishUrl="rtmp://your-publish-url"
-  onLayoutChange={() => null}
+  streamURL="rtmp://your-publish-url"
+  streamName="stream-name"
   onConnectionFailedRtmp={() => null}
   onConnectionStartedRtmp={() => null}
   onConnectionSuccessRtmp={() => null}
@@ -68,12 +68,12 @@ async function publisherActions() {
 ## Props
 | Name           |    Type    |   Required   |   Description                         |
 | -------------- | :--------: | :----------: |:-------------------------------------:|
-| `publishUrl`   |  `string`  |   `true`     | Publish URL address with RTM Protocol |
+| `streamURL`    |  `string`  |   `true`     | Publish URL address with RTM Protocol |
+| `streamName`   |  `string`  |   `true`     |                    Stream name or key |
 
 ## Events
 | Name                        |   Returns     |  Description                                                                              |
 | --------------------------  | :------------:| -----------------------------------------------------------------------------------------:|
-| `onLayoutChange`            |  `null`       | Invokes on layout changes                                                                 |
 | `onConnectionFailed`        |  `null`       | Invokes on connection fails to publish URL                                                |
 | `onConnectionStarted`       |  `null`       | Invokes on connection start to publish URL                                                |
 | `onConnectionSuccess`       |  `null`       | Invokes on connection success to publish URL                                              |

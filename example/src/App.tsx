@@ -13,7 +13,8 @@ import Button from './components/Button';
 import LiveBadge from './components/LiveBadge';
 import usePermissions from './hooks/usePermissions';
 
-const PUBLISH_URL = Config.PUBLISH_URL;
+const STREAM_URL = Config.STREAM_URL;
+const STREAM_NAME = Config.STREAM_NAME;
 
 export default function App() {
   const publisherRef = useRef<RTMPPublisherRefProps>(null);
@@ -75,12 +76,13 @@ export default function App() {
       {permissionGranted && (
         <RTMPPublisher
           ref={publisherRef}
-          publishUrl={PUBLISH_URL}
+          streamURL={STREAM_URL}
+          streamName={STREAM_NAME}
           style={styles.publisher_camera}
+          onDisconnect={handleOnDisconnect}
           onConnectionFailed={handleOnConnectionFailed}
           onConnectionStarted={handleOnConnectionStarted}
           onConnectionSuccess={handleOnConnectionSuccess}
-          onDisconnect={handleOnDisconnect}
           onNewBitrateReceived={handleOnNewBitrateReceived}
           onStreamStateChanged={handleOnStreamStateChanged}
         />

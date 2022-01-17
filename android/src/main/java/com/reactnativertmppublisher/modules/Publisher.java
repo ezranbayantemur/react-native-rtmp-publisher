@@ -18,7 +18,8 @@ public class Publisher {
   private final RtmpCamera1 _rtmpCamera;
   private final ThemedReactContext _reactContext;
   ConnectionChecker connectionChecker = new ConnectionChecker();
-  private String _publishURL;
+  private String _streamUrl;
+  private String _streamName;
 
   public Publisher(ThemedReactContext reactContext, SurfaceView surfaceView) {
     _reactContext = reactContext;
@@ -93,11 +94,15 @@ public class Publisher {
 
   //region COMPONENT METHODS
   public String getPublishURL() {
-    return _publishURL;
+    return _streamUrl + "/" + _streamName;
   }
 
-  public void setPublishURL(String _publishURL) {
-    this._publishURL = _publishURL;
+  public void setStreamUrl(String _streamUrl) {
+    this._streamUrl = _streamUrl;
+  }
+
+  public void setStreamName(String _streamName) {
+    this._streamName = _streamName;
   }
 
   public boolean isStreaming() {
@@ -141,11 +146,12 @@ public class Publisher {
       boolean isAudioPrepared = _rtmpCamera.prepareAudio();
       boolean isVideoPrepared = _rtmpCamera.prepareVideo();
 
-      if (!isAudioPrepared || !isVideoPrepared || _publishURL == null) {
+      if (!isAudioPrepared || !isVideoPrepared || _streamName == null || _streamUrl == null) {
         return;
       }
 
-      _rtmpCamera.startStream(_publishURL);
+      String url = _streamUrl + "/" + _streamName;
+      _rtmpCamera.startStream(url);
     } catch (Exception e) {
       e.printStackTrace();
     }

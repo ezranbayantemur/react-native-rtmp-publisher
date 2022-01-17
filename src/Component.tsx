@@ -7,7 +7,6 @@ import type { StreamState } from './types';
 
 type RTMPData<T> = { data: T };
 
-export type LayoutChangeType = NativeSyntheticEvent<RTMPData<null>>;
 export type ConnectionFailedType = NativeSyntheticEvent<RTMPData<string>>;
 export type ConnectionStartedType = NativeSyntheticEvent<RTMPData<string>>;
 export type ConnectionSuccessType = NativeSyntheticEvent<RTMPData<null>>;
@@ -18,8 +17,8 @@ export type StreamStateChangedType = NativeSyntheticEvent<
 >;
 export interface NativeRTMPPublisherProps {
   style?: ViewStyle;
-  publishUrl: string;
-  onLayoutChange?: (e: LayoutChangeType) => void;
+  streamURL: string;
+  streamName: string;
   onConnectionFailed?: (e: ConnectionFailedType) => void;
   onConnectionStarted?: (e: ConnectionStartedType) => void;
   onConnectionSuccess?: (e: ConnectionSuccessType) => void;

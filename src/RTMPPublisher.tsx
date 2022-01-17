@@ -2,7 +2,6 @@ import React, { forwardRef, useImperativeHandle } from 'react';
 import { NativeModules, ViewStyle } from 'react-native';
 import PublisherComponent, {
   DisconnectType,
-  LayoutChangeType,
   ConnectionFailedType,
   ConnectionStartedType,
   ConnectionSuccessType,
@@ -14,11 +13,8 @@ import type { RTMPPublisherRefProps, StreamState } from './types';
 const RTMPModule = NativeModules.RTMPPublisher;
 export interface RTMPPublisherProps {
   style?: ViewStyle;
-  publishUrl: string;
-  /**
-   * Callback for layout changes
-   */
-  onLayoutChange?: (data: null) => void;
+  streamURL: string;
+  streamName: string;
   /**
    * Callback for connection fails on RTMP server
    */
@@ -53,7 +49,6 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
       onConnectionStarted,
       onConnectionSuccess,
       onDisconnect,
-      onLayoutChange,
       onNewBitrateReceived,
       onStreamStateChanged,
       ...props
@@ -100,10 +95,6 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
       onDisconnect && onDisconnect(e.nativeEvent.data);
     };
 
-    const handleOnLayoutChange = (e: LayoutChangeType) => {
-      onLayoutChange && onLayoutChange(e.nativeEvent.data);
-    };
-
     const handleOnNewBitrateReceived = (e: NewBitrateReceivedType) => {
       onNewBitrateReceived && onNewBitrateReceived(e.nativeEvent.data);
     };
@@ -130,11 +121,10 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
     return (
       <PublisherComponent
         {...props}
+        onDisconnect={handleOnDisconnect}
         onConnectionFailed={handleOnConnectionFailed}
         onConnectionStarted={handleOnConnectionStarted}
         onConnectionSuccess={handleOnConnectionSuccess}
-        onDisconnect={handleOnDisconnect}
-        onLayoutChange={handleOnLayoutChange}
         onNewBitrateReceived={handleOnNewBitrateReceived}
         onStreamStateChanged={handleOnStreamStateChanged}
       />

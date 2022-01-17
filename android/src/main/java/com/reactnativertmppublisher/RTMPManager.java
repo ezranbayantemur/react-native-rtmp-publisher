@@ -26,9 +26,7 @@ public class RTMPManager extends SimpleViewManager<SurfaceView> {
   View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {
     @Override
     public void onLayoutChange(@NonNull View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-      _reactContext
-        .getJSModule(RCTEventEmitter.class)
-        .receiveEvent(view.getId(), "onLayoutChange", null);
+
     }
   };
 
@@ -52,18 +50,21 @@ public class RTMPManager extends SimpleViewManager<SurfaceView> {
     return surfaceView;
   }
 
-  @ReactProp(name = "publishUrl")
-  public void setPublishUrl(SurfaceView surfaceView, @Nullable String url) {
-    publisher.setPublishURL(url);
+  @ReactProp(name = "streamURL")
+  public void setStreamURL(SurfaceView surfaceView, @Nullable String url) {
+    publisher.setStreamUrl(url);
   }
 
+  @ReactProp(name = "streamName")
+  public void setStreamName(SurfaceView surfaceView, @Nullable String name) {
+    publisher.setStreamName(name);
+  }
 
   @Nullable
   @Override
   public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
     return MapBuilder.<String, Object>builder()
       .put("onDisconnect", MapBuilder.of("registrationName", "onDisconnect"))
-      .put("onLayoutChange", MapBuilder.of("registrationName", "onLayoutChange"))
       .put("onConnectionFailed", MapBuilder.of("registrationName", "onConnectionFailed"))
       .put("onConnectionStarted", MapBuilder.of("registrationName", "onConnectionStarted"))
       .put("onConnectionSuccess", MapBuilder.of("registrationName", "onConnectionSuccess"))
