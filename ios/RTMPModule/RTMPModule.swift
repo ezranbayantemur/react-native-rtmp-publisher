@@ -12,7 +12,7 @@ import HaishinKit
 // TODO: Try catch blokları eklenecek
 
 @objc(RTMPPublisher)
-class RTMPPublisher: NSObject {
+class RTMPModule: NSObject {
   private var cameraPosition: AVCaptureDevice.Position = .back
 
   @objc

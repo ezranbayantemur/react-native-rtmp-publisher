@@ -18,8 +18,8 @@ const STREAM_NAME = Config.STREAM_NAME;
 
 export default function App() {
   const publisherRef = useRef<RTMPPublisherRefProps>(null);
-  const [isStreaming, setIsStreaming] = useState<boolean>();
-  const [isMuted, setIsMuted] = useState<boolean>();
+  const [isStreaming, setIsStreaming] = useState<boolean>(false);
+  const [isMuted, setIsMuted] = useState<boolean>(false);
 
   const { permissionGranted } = usePermissions();
 

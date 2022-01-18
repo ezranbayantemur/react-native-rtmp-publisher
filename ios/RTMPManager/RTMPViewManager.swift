@@ -8,7 +8,7 @@
 import UIKit
 
 @objc(RTMPPublisherManager)
-class RTMPPublisherManager: RCTViewManager {
+class RTMPViewManager: RCTViewManager {
   override func view() -> UIView! {
     return RTMPView()
   }

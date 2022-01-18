@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		32CEA3BD27961F6F00194B51 /* RTMPCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3B427961F6F00194B51 /* RTMPCreator.swift */; };
-		32CEA3BE27961F6F00194B51 /* RTMPPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3B727961F6F00194B51 /* RTMPPublisher.swift */; };
-		32CEA3BF27961F6F00194B51 /* RTMPPublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3B827961F6F00194B51 /* RTMPPublisher.m */; };
-		32CEA3C027961F6F00194B51 /* RTMPPublisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3BA27961F6F00194B51 /* RTMPPublisherManager.swift */; };
+		32CEA3BE27961F6F00194B51 /* RTMPModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3B727961F6F00194B51 /* RTMPModule.swift */; };
+		32CEA3BF27961F6F00194B51 /* RTMPModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3B827961F6F00194B51 /* RTMPModule.m */; };
+		32CEA3C027961F6F00194B51 /* RTMPViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3BA27961F6F00194B51 /* RTMPViewManager.swift */; };
 		32CEA3C127961F6F00194B51 /* RTMPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3BB27961F6F00194B51 /* RTMPView.swift */; };
 		32CEA3C227961F6F00194B51 /* RTMPViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3BC27961F6F00194B51 /* RTMPViewManager.m */; };
 		89074A5884B1F9318C787B27 /* Pods_RtmpPublish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B22EF716C5B2D7B497AF223 /* Pods_RtmpPublish.framework */; };
@@ -34,9 +34,9 @@
 		192BAD6E1758A82B185C3C35 /* Pods-RtmpPublish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtmpPublish.debug.xcconfig"; path = "Target Support Files/Pods-RtmpPublish/Pods-RtmpPublish.debug.xcconfig"; sourceTree = "<group>"; };
 		32CEA3B427961F6F00194B51 /* RTMPCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPCreator.swift; sourceTree = "<group>"; };
 		32CEA3B527961F6F00194B51 /* RtmpPublish-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RtmpPublish-Bridging-Header.h"; sourceTree = "<group>"; };
-		32CEA3B727961F6F00194B51 /* RTMPPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPPublisher.swift; sourceTree = "<group>"; };
-		32CEA3B827961F6F00194B51 /* RTMPPublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPPublisher.m; sourceTree = "<group>"; };
-		32CEA3BA27961F6F00194B51 /* RTMPPublisherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPPublisherManager.swift; sourceTree = "<group>"; };
+		32CEA3B727961F6F00194B51 /* RTMPModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPModule.swift; sourceTree = "<group>"; };
+		32CEA3B827961F6F00194B51 /* RTMPModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPModule.m; sourceTree = "<group>"; };
+		32CEA3BA27961F6F00194B51 /* RTMPViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPViewManager.swift; sourceTree = "<group>"; };
 		32CEA3BB27961F6F00194B51 /* RTMPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPView.swift; sourceTree = "<group>"; };
 		32CEA3BC27961F6F00194B51 /* RTMPViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPViewManager.m; sourceTree = "<group>"; };
 		4256FCC72F0AEE00B012D7DA /* Pods-RtmpPublish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtmpPublish.release.xcconfig"; path = "Target Support Files/Pods-RtmpPublish/Pods-RtmpPublish.release.xcconfig"; sourceTree = "<group>"; };
@@ -71,31 +71,31 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		32CEA3B627961F6F00194B51 /* RTMPPublisher */ = {
+		32CEA3B627961F6F00194B51 /* RTMPModule */ = {
 			isa = PBXGroup;
 			children = (
-				32CEA3B727961F6F00194B51 /* RTMPPublisher.swift */,
-				32CEA3B827961F6F00194B51 /* RTMPPublisher.m */,
+				32CEA3B727961F6F00194B51 /* RTMPModule.swift */,
+				32CEA3B827961F6F00194B51 /* RTMPModule.m */,
 			);
-			path = RTMPPublisher;
+			path = RTMPModule;
 			sourceTree = "<group>";
 		};
-		32CEA3B927961F6F00194B51 /* RTMPModule */ = {
+		32CEA3B927961F6F00194B51 /* RTMPManager */ = {
 			isa = PBXGroup;
 			children = (
-				32CEA3BA27961F6F00194B51 /* RTMPPublisherManager.swift */,
+				32CEA3BA27961F6F00194B51 /* RTMPViewManager.swift */,
 				32CEA3BB27961F6F00194B51 /* RTMPView.swift */,
 				32CEA3BC27961F6F00194B51 /* RTMPViewManager.m */,
 			);
-			path = RTMPModule;
+			path = RTMPManager;
 			sourceTree = "<group>";
 		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
 				32CEA3B427961F6F00194B51 /* RTMPCreator.swift */,
-				32CEA3B627961F6F00194B51 /* RTMPPublisher */,
-				32CEA3B927961F6F00194B51 /* RTMPModule */,
+				32CEA3B627961F6F00194B51 /* RTMPModule */,
+				32CEA3B927961F6F00194B51 /* RTMPManager */,
 				32CEA3B527961F6F00194B51 /* RtmpPublish-Bridging-Header.h */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				265EB68565E907192F4B3AAE /* Pods */,
@@ -195,9 +195,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				32CEA3C127961F6F00194B51 /* RTMPView.swift in Sources */,
-				32CEA3BF27961F6F00194B51 /* RTMPPublisher.m in Sources */,
-				32CEA3C027961F6F00194B51 /* RTMPPublisherManager.swift in Sources */,
-				32CEA3BE27961F6F00194B51 /* RTMPPublisher.swift in Sources */,
+				32CEA3BF27961F6F00194B51 /* RTMPModule.m in Sources */,
+				32CEA3C027961F6F00194B51 /* RTMPViewManager.swift in Sources */,
+				32CEA3BE27961F6F00194B51 /* RTMPModule.swift in Sources */,
 				32CEA3BD27961F6F00194B51 /* RTMPCreator.swift in Sources */,
 				32CEA3C227961F6F00194B51 /* RTMPViewManager.m in Sources */,
 			);
