@@ -4,7 +4,7 @@
 
 
 
-📹 Live stream RTMP publisher for React Native
+📹 Live stream RTMP publisher for React Native with built in camera support!
 
 ## Installation
 
@@ -39,17 +39,17 @@ You can use Youtube for live stream server. You can check [Live on Youtube](http
 Add Android Permission for camera and audio to `AndroidManifest.xml`
 
 ```xml
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
 ```
 
 ### iOS
 Add iOS Permission for camera and audio to `Info.plist`
 ```xml
-	<key>NSCameraUsageDescription</key>
-	<string>CAMERA PERMISSION DESCRIPTION</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>AUDIO PERMISSION DESCRIPTION</string>
+<key>NSCameraUsageDescription</key>
+ <string>CAMERA PERMISSION DESCRIPTION</string>
+<key>NSMicrophoneUsageDescription</key>
+ <string>AUDIO PERMISSION DESCRIPTION</string>
 ```
 ### React Native
 
