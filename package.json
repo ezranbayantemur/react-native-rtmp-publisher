@@ -26,7 +26,7 @@
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
-    "release": "release-it",
+    "release": "dotenv release-it --",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods"
@@ -39,7 +39,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ezranbayantemur/react-native-rtmp-publisher.git"
-  },  
+  },
   "author": "Ezran <ezranbayantemur@gmail.com> (https://github.com/ezranbayantemur)",
   "license": "MIT",
   "bugs": {
@@ -57,6 +57,7 @@
     "@types/react": "^16.9.19",
     "@types/react-native": "0.62.13",
     "commitlint": "^11.0.0",
+    "dotenv-cli": "^4.1.1",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-prettier": "^3.1.3",
