@@ -2,12 +2,10 @@
 <img src="https://user-images.githubusercontent.com/42299721/150039268-bba167fe-c7de-471a-9587-565308d71f20.gif" alt="logo" width="60%" />
 </p>
 
-<p align="left">
+<p align="center">
 <img src="https://img.shields.io/github/license/ezranbayantemur/react-native-rtmp-publisher" alt="2" />
 <img src="https://img.shields.io/github/issues/ezranbayantemur/react-native-rtmp-publisher" alt="2" />
 <img src="https://img.shields.io/github/issues-pr/ezranbayantemur/react-native-rtmp-publisher" alt="2" />
-</p>
-<p align="right">
 <img src="https://img.shields.io/github/followers/ezranbayantemur?style=social" alt="2" />
 <img src="https://img.shields.io/github/stars/ezranbayantemur/react-native-rtmp-publisher?style=social" alt="2" />
 <img src="https://img.shields.io/github/forks/ezranbayantemur/react-native-rtmp-publisher?style=social" alt="2" />
