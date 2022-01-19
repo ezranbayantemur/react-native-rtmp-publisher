@@ -3,12 +3,13 @@
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/github/license/ezranbayantemur/react-native-rtmp-publisher" alt="2" />
-<img src="https://img.shields.io/github/issues/ezranbayantemur/react-native-rtmp-publisher" alt="2" />
-<img src="https://img.shields.io/github/issues-pr/ezranbayantemur/react-native-rtmp-publisher" alt="2" />
-<img src="https://img.shields.io/github/followers/ezranbayantemur?style=social" alt="2" />
-<img src="https://img.shields.io/github/stars/ezranbayantemur/react-native-rtmp-publisher?style=social" alt="2" />
-<img src="https://img.shields.io/github/forks/ezranbayantemur/react-native-rtmp-publisher?style=social" alt="2" />
+<img src="https://img.shields.io/github/license/ezranbayantemur/react-native-rtmp-publisher" alt="github/license" />
+<img src="https://img.shields.io/github/issues/ezranbayantemur/react-native-rtmp-publisher" alt="github/issues" />
+<img src="https://img.shields.io/github/issues-pr/ezranbayantemur/react-native-rtmp-publisher" alt="github/issues-pr" />
+<img src="https://img.shields.io/npm/dw/react-native-rtmp-publisher" alt="npm/dw" />
+<img src="https://img.shields.io/github/followers/ezranbayantemur?style=social" alt="github/followers" />
+<img src="https://img.shields.io/github/stars/ezranbayantemur/react-native-rtmp-publisher?style=social" alt="github/stars" />
+<img src="https://img.shields.io/github/forks/ezranbayantemur/react-native-rtmp-publisher?style=social" alt="github/forks" />
 </p>
 
 📹 Live stream RTMP publisher for React Native with built in camera support!
