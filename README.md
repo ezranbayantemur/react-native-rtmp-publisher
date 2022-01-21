@@ -131,32 +131,32 @@ For live stream, Youtube gives you stream url and stream key, you can place the 
 
 ## Events
 
-|          Name          |    Returns    |                                        Description                                        |   Platform   |
-| :--------------------: | :-----------: | :---------------------------------------------------------------------------------------: | :----------: |
-|  `onConnectionFailed`  |    `null`     |                        Invokes on connection fails to publish URL                         |     Both     |
-| `onConnectionStarted`  |    `null`     |                        Invokes on connection start to publish URL                         |     Both     |
-| `onConnectionSuccess`  |    `null`     |                       Invokes on connection success to publish URL                        |     Both     |
-|     `onDisconnect`     |    `null`     |                          Invokes on disconnect from publish URL                           |     Both     |
-| `onNewBitrateReceived` |    `null`     |                         Invokes on new bitrate received from URL                          | Only Android |
-| `onStreamStateChanged` | `streamState` | Invokes on stream state changes. It can be use alternatively for above connection events. |     Both     |
+|          Name          |    Returns    |                                        Description                                        |  Android | iOS |
+| :--------------------: | :-----------: | :---------------------------------------------------------------------------------------: | :------: |:---:|
+|  `onConnectionFailed`  |    `null`     |                        Invokes on connection fails to publish URL                         |     ✅    |  ✅ |
+| `onConnectionStarted`  |    `null`     |                        Invokes on connection start to publish URL                         |     ✅    |  ✅ |
+| `onConnectionSuccess`  |    `null`     |                       Invokes on connection success to publish URL                        |     ✅    |  ✅ |
+|     `onDisconnect`     |    `null`     |                          Invokes on disconnect from publish URL                           |     ✅    |  ✅ |
+| `onNewBitrateReceived` |    `null`     |                         Invokes on new bitrate received from URL                          |     ✅    |  ❌ |
+| `onStreamStateChanged` | `streamState` | Invokes on stream state changes. It can be use alternatively for above connection events. |     ✅    |  ✅ |
 
 ## Methods
 
-|        Name         |      Returns       |         Description         |   Platform   |
-| :-----------------: | :----------------: | :-------------------------: | :----------: |
-|    `startStream`    |  `Promise<null>`   |      Starts the stream      |     Both     |
-|    `stopStream`     |  `Promise<null>`   |      Stops the stream       |     Both     |
-|       `mute`        |  `Promise<null>`   |    Mutes the microphone     |     Both     |
-|      `unmute`       |  `Promise<null>`   |   Unmutes the microphone    |     Both     |
-|   `switchCamera`    |  `Promise<null>`   |     Switches the camera     |     Both     |
-|   `getPublishURL`   | `Promise<string>`  |    Gets the publish URL     |     Both     |
-|      `isMuted`      | `Promise<boolean>` |  Returns microphone state   |     Both     |
-|    `isStreaming`    | `Promise<boolean>` |   Returns streaming state   |     Both     |
-|   `toggleFlash`     | `Promise<boolean>` |    Toggles the flash        |     Both     |
-|   `hasCongestion`   | `Promise<boolean>` |    Returns if congestion    | Only Android |
-|  `isAudioPrepared`  | `Promise<boolean>` | Returns audio prepare state |     Both     |
-|  `isVideoPrepared`  | `Promise<boolean>` | Returns video prepare state |     Both     |
-| `isCameraOnPreview` | `Promise<boolean>` |    Returns camera is on     | Only Android |
+|        Name         |      Returns       |         Description         |   Android | iOS |
+| :-----------------: | :----------------: | :-------------------------: |  :------: |:---:|
+|    `startStream`    |   `Promise<void>`  |      Starts the stream      |     ✅    |  ✅ |
+|    `stopStream`     |   `Promise<void>`  |      Stops the stream       |     ✅    |  ✅ |
+|       `mute`        |   `Promise<void>`  |    Mutes the microphone     |     ✅    |  ✅ |
+|      `unmute`       |   `Promise<void>`  |   Unmutes the microphone    |     ✅    |  ✅ |
+|   `switchCamera`    |   `Promise<void>`  |     Switches the camera     |     ✅    |  ✅ |
+|   `toggleFlash`     |   `Promise<void>`  |    Toggles the flash        |     ✅    |  ✅ |
+|   `getPublishURL`   |  `Promise<string>` |    Gets the publish URL     |     ✅    |  ✅ |
+|      `isMuted`      |  `Promise<boolean>`|  Returns microphone state   |     ✅    |  ✅ |
+|    `isStreaming`    |  `Promise<boolean>`|   Returns streaming state   |     ✅    |  ✅ |
+|   `hasCongestion`   |  `Promise<boolean>`|    Returns if congestion    |     ✅    |  ❌ |
+|  `isAudioPrepared`  |  `Promise<boolean>`| Returns audio prepare state |     ✅    |  ✅ |
+|  `isVideoPrepared`  |  `Promise<boolean>`| Returns video prepare state |     ✅    |  ✅ |
+| `isCameraOnPreview` |  `Promise<boolean>`|    Returns camera is on     |     ✅    |  ❌ |
 
 ## Types
 
