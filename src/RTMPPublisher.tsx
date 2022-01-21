@@ -79,6 +79,8 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
 
     const switchCamera = () => RTMPModule.switchCamera();
 
+    const toggleFlash = () => RTMPModule.toggleFlash();
+
     const handleOnConnectionFailed = (e: ConnectionFailedType) => {
       onConnectionFailed && onConnectionFailed(e.nativeEvent.data);
     };
@@ -116,6 +118,7 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
       mute,
       unmute,
       switchCamera,
+      toggleFlash,
     }));
 
     return (

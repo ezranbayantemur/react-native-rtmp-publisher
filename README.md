@@ -86,6 +86,7 @@ async function publisherActions() {
   await publisherRef.current.getPublishURL();
   await publisherRef.current.isMuted();
   await publisherRef.current.isStreaming();
+  await publisherRef.current.toggleFlash();
   await publisherRef.current.hasCongestion();
   await publisherRef.current.isAudioPrepared();
   await publisherRef.current.isVideoPrepared();
@@ -151,6 +152,7 @@ For live stream, Youtube gives you stream url and stream key, you can place the 
 |   `getPublishURL`   | `Promise<string>`  |    Gets the publish URL     |     Both     |
 |      `isMuted`      | `Promise<boolean>` |  Returns microphone state   |     Both     |
 |    `isStreaming`    | `Promise<boolean>` |   Returns streaming state   |     Both     |
+|   `toggleFlash`     | `Promise<boolean>` |    Toggles the flash        |     Both     |
 |   `hasCongestion`   | `Promise<boolean>` |    Returns if congestion    | Only Android |
 |  `isAudioPrepared`  | `Promise<boolean>` | Returns audio prepare state |     Both     |
 |  `isVideoPrepared`  | `Promise<boolean>` | Returns video prepare state |     Both     |

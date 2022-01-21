@@ -92,7 +92,7 @@ public class RTMPModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void mute() {
+  public void mute(Promise promise) {
     try {
       if (RTMPManager.publisher.isAudioMuted()) {
         return;
@@ -100,11 +100,12 @@ public class RTMPModule extends ReactContextBaseJavaModule {
 
       RTMPManager.publisher.disableAudio();
     } catch (Exception e) {
+      promise.reject(e);
     }
   }
 
   @ReactMethod
-  public void unmute() {
+  public void unmute(Promise promise) {
     try {
       if (!RTMPManager.publisher.isAudioMuted()) {
         return;
@@ -112,15 +113,16 @@ public class RTMPModule extends ReactContextBaseJavaModule {
 
       RTMPManager.publisher.enableAudio();
     } catch (Exception e) {
+      promise.reject(e);
     }
   }
 
   @ReactMethod
-  public void switchCamera() {
+  public void switchCamera(Promise promise) {
     try {
       RTMPManager.publisher.switchCamera();
     } catch (Exception e) {
-
+      promise.reject(e);
     }
   }
 
@@ -137,6 +139,15 @@ public class RTMPModule extends ReactContextBaseJavaModule {
   public void stopStream(Promise promise) {
     try {
       RTMPManager.publisher.stopStream();
+    } catch (Exception e) {
+      promise.reject(e);
+    }
+  }
+
+  @ReactMethod
+  public void toggleFlash(Promise promise) {
+    try {
+      RTMPManager.publisher.toggleFlash();
     } catch (Exception e) {
       promise.reject(e);
     }

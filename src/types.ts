@@ -49,6 +49,10 @@ export interface RTMPPublisherRefProps {
    * Switches the camera
    */
   switchCamera: () => Promise<void>;
+  /**
+   * Toggles the flash
+   */
+  toggleFlash: () => Promise<void>;
 }
 
 export interface RTMPPublisherProps {

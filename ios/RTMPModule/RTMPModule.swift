@@ -65,4 +65,9 @@ class RTMPModule: NSObject {
   func isVideoPrepared(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
     resolve(RTMPCreator.stream.receiveVideo)
   }
+    
+  @objc
+  func toggleFlash(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
+      resolve(RTMPCreator.stream.torch.toggle())
+  }
 }

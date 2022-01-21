@@ -141,6 +141,20 @@ public class Publisher {
     _rtmpCamera.switchCamera();
   }
 
+  public void toggleFlash() {
+    try {
+      if(_rtmpCamera.isLanternEnabled()){
+        _rtmpCamera.disableLantern();
+        return;
+      }
+
+      _rtmpCamera.enableLantern();
+    }
+    catch (Exception e){
+      e.printStackTrace();
+    }
+  }
+
   public void startStream() {
     try {
       boolean isAudioPrepared = _rtmpCamera.prepareAudio();

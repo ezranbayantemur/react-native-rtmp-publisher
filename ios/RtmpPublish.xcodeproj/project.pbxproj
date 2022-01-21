@@ -13,7 +13,7 @@
 		32CEA3C027961F6F00194B51 /* RTMPViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3BA27961F6F00194B51 /* RTMPViewManager.swift */; };
 		32CEA3C127961F6F00194B51 /* RTMPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3BB27961F6F00194B51 /* RTMPView.swift */; };
 		32CEA3C227961F6F00194B51 /* RTMPViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3BC27961F6F00194B51 /* RTMPViewManager.m */; };
-		89074A5884B1F9318C787B27 /* Pods_RtmpPublish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B22EF716C5B2D7B497AF223 /* Pods_RtmpPublish.framework */; };
+		B5641831B0EE116DF19373D6 /* Pods_RtmpPublish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B63F6A41A4AD94B2E1B8A7 /* Pods_RtmpPublish.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,9 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0B22EF716C5B2D7B497AF223 /* Pods_RtmpPublish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RtmpPublish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		134814201AA4EA6300B7C361 /* libRtmpPublish.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRtmpPublish.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		192BAD6E1758A82B185C3C35 /* Pods-RtmpPublish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtmpPublish.debug.xcconfig"; path = "Target Support Files/Pods-RtmpPublish/Pods-RtmpPublish.debug.xcconfig"; sourceTree = "<group>"; };
 		32CEA3B427961F6F00194B51 /* RTMPCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPCreator.swift; sourceTree = "<group>"; };
 		32CEA3B527961F6F00194B51 /* RtmpPublish-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RtmpPublish-Bridging-Header.h"; sourceTree = "<group>"; };
 		32CEA3B727961F6F00194B51 /* RTMPModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPModule.swift; sourceTree = "<group>"; };
@@ -39,7 +37,9 @@
 		32CEA3BA27961F6F00194B51 /* RTMPViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPViewManager.swift; sourceTree = "<group>"; };
 		32CEA3BB27961F6F00194B51 /* RTMPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPView.swift; sourceTree = "<group>"; };
 		32CEA3BC27961F6F00194B51 /* RTMPViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPViewManager.m; sourceTree = "<group>"; };
-		4256FCC72F0AEE00B012D7DA /* Pods-RtmpPublish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtmpPublish.release.xcconfig"; path = "Target Support Files/Pods-RtmpPublish/Pods-RtmpPublish.release.xcconfig"; sourceTree = "<group>"; };
+		ACA300E203416F8AA0B3C30F /* Pods-RtmpPublish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtmpPublish.release.xcconfig"; path = "Target Support Files/Pods-RtmpPublish/Pods-RtmpPublish.release.xcconfig"; sourceTree = "<group>"; };
+		B6B63F6A41A4AD94B2E1B8A7 /* Pods_RtmpPublish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RtmpPublish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB3A742DCB13E60C1E3DC652 /* Pods-RtmpPublish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RtmpPublish.debug.xcconfig"; path = "Target Support Files/Pods-RtmpPublish/Pods-RtmpPublish.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89074A5884B1F9318C787B27 /* Pods_RtmpPublish.framework in Frameworks */,
+				B5641831B0EE116DF19373D6 /* Pods_RtmpPublish.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,8 +65,8 @@
 		265EB68565E907192F4B3AAE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				192BAD6E1758A82B185C3C35 /* Pods-RtmpPublish.debug.xcconfig */,
-				4256FCC72F0AEE00B012D7DA /* Pods-RtmpPublish.release.xcconfig */,
+				FB3A742DCB13E60C1E3DC652 /* Pods-RtmpPublish.debug.xcconfig */,
+				ACA300E203416F8AA0B3C30F /* Pods-RtmpPublish.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -90,6 +90,14 @@
 			path = RTMPManager;
 			sourceTree = "<group>";
 		};
+		582D434318D446FE9DF8C82D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6B63F6A41A4AD94B2E1B8A7 /* Pods_RtmpPublish.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
@@ -99,16 +107,8 @@
 				32CEA3B527961F6F00194B51 /* RtmpPublish-Bridging-Header.h */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				265EB68565E907192F4B3AAE /* Pods */,
-				7D14806E73601761FC0E40E2 /* Frameworks */,
+				582D434318D446FE9DF8C82D /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		7D14806E73601761FC0E40E2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0B22EF716C5B2D7B497AF223 /* Pods_RtmpPublish.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +118,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RtmpPublish" */;
 			buildPhases = (
-				E09CB192C21B03D6CD9D0591 /* [CP] Check Pods Manifest.lock */,
+				0A1AF8C8DD8780396FF4DEE9 /* [CP] Check Pods Manifest.lock */,
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
@@ -165,7 +165,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		E09CB192C21B03D6CD9D0591 /* [CP] Check Pods Manifest.lock */ = {
+		0A1AF8C8DD8780396FF4DEE9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -301,7 +301,7 @@
 		};
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 192BAD6E1758A82B185C3C35 /* Pods-RtmpPublish.debug.xcconfig */;
+			baseConfigurationReference = FB3A742DCB13E60C1E3DC652 /* Pods-RtmpPublish.debug.xcconfig */;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -321,7 +321,7 @@
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4256FCC72F0AEE00B012D7DA /* Pods-RtmpPublish.release.xcconfig */;
+			baseConfigurationReference = ACA300E203416F8AA0B3C30F /* Pods-RtmpPublish.release.xcconfig */;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
