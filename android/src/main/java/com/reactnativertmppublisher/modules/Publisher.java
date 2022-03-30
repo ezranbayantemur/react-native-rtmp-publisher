@@ -1,5 +1,6 @@
 package com.reactnativertmppublisher.modules;
 
+import android.media.MediaRecorder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
@@ -157,8 +158,8 @@ public class Publisher {
 
   public void startStream() {
     try {
-      boolean isAudioPrepared = _rtmpCamera.prepareAudio();
-      boolean isVideoPrepared = _rtmpCamera.prepareVideo();
+      boolean isAudioPrepared = _rtmpCamera.prepareAudio(MediaRecorder.AudioSource.MIC, 128 * 1024, 44100, true, false, true);
+      boolean isVideoPrepared = _rtmpCamera.prepareVideo(1280 , 720, 3000 * 1024);
 
       if (!isAudioPrepared || !isVideoPrepared || _streamName == null || _streamUrl == null) {
         return;

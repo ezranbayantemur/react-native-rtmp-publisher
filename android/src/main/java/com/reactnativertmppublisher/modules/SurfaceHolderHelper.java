@@ -22,7 +22,7 @@ public class SurfaceHolderHelper implements SurfaceHolder.Callback {
 
   @Override
   public void surfaceChanged(@NonNull SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-    _rtmpCamera1.startPreview();
+    _rtmpCamera1.startPreview(1280 , 720);
   }
 
   @Override
