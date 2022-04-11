@@ -70,6 +70,7 @@ public class RTMPManager extends SimpleViewManager<SurfaceView> {
       .put("onConnectionSuccess", MapBuilder.of("registrationName", "onConnectionSuccess"))
       .put("onNewBitrateReceived", MapBuilder.of("registrationName", "onNewBitrateReceived"))
       .put("onStreamStateChanged", MapBuilder.of("registrationName", "onStreamStateChanged"))
+      .put("onBluetoothDeviceStatusChanged", MapBuilder.of("registrationName", "onBluetoothDeviceStatusChanged"))
       .build();
   }
 }

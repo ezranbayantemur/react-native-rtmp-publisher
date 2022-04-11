@@ -4,6 +4,8 @@ import { View } from 'react-native';
 import RTMPPublisher, {
   RTMPPublisherRefProps,
   StreamState,
+  AudioInputType,
+  BluetoothDeviceStatuses,
 } from 'react-native-rtmp-publisher';
 import Config from 'react-native-config';
 
@@ -12,6 +14,7 @@ import styles from './App.styles';
 import Button from './components/Button';
 import LiveBadge from './components/LiveBadge';
 import usePermissions from './hooks/usePermissions';
+import MicrophoneSelectModal from './components/MicrophoneSelectModal';
 
 const STREAM_URL = Config.STREAM_URL;
 const STREAM_NAME = Config.STREAM_NAME;
@@ -20,56 +23,87 @@ export default function App() {
   const publisherRef = useRef<RTMPPublisherRefProps>(null);
   const [isStreaming, setIsStreaming] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [hasBluetoothDevice, setHasBluetoothDevice] = useState<boolean>(false);
+  const [microphoneModalVisibility, setMicrophoneModalVisibility] =
+    useState<boolean>(false);
 
   const { permissionGranted } = usePermissions();
 
-  function handleOnConnectionFailed(data: String) {
+  const handleOnConnectionFailed = (data: String) => {
     console.log('Connection Failed: ' + data);
-  }
+  };
 
-  function handleOnConnectionStarted(data: String) {
+  const handleOnConnectionStarted = (data: String) => {
     console.log('Connection Started: ' + data);
-  }
+  };
 
-  function handleOnConnectionSuccess() {
+  const handleOnConnectionSuccess = () => {
     console.log('Connected');
     setIsStreaming(true);
-  }
+  };
 
-  function handleOnDisconnect() {
+  const handleOnDisconnect = () => {
     console.log('Disconnected');
     setIsStreaming(false);
-  }
+  };
 
-  function handleOnNewBitrateReceived(data: number) {
+  const handleOnNewBitrateReceived = (data: number) => {
     console.log('New Bitrate Received: ' + data);
-  }
+  };
 
-  function handleOnStreamStateChanged(data: StreamState) {
+  const handleOnStreamStateChanged = (data: StreamState) => {
     console.log('Stream Status: ' + data);
-  }
+  };
 
-  function handleUnmute() {
+  const handleUnmute = () => {
     publisherRef.current && publisherRef.current.unmute();
     setIsMuted(false);
-  }
+  };
 
-  function handleMute() {
+  const handleMute = () => {
     publisherRef.current && publisherRef.current.mute();
     setIsMuted(true);
-  }
+  };
 
-  function handleStartStream() {
+  const handleStartStream = () => {
     publisherRef.current && publisherRef.current.startStream();
-  }
+  };
 
-  function handleStopStream() {
+  const handleStopStream = () => {
     publisherRef.current && publisherRef.current.stopStream();
-  }
+  };
 
-  function handleSwitchCamera() {
+  const handleSwitchCamera = () => {
     publisherRef.current && publisherRef.current.switchCamera();
-  }
+  };
+
+  const handleToggleMicrophoneModal = () => {
+    setMicrophoneModalVisibility(!microphoneModalVisibility);
+  };
+
+  const handleMicrophoneSelect = (selectedMicrophone: AudioInputType) => {
+    publisherRef.current &&
+      publisherRef.current.setAudioInput(selectedMicrophone);
+  };
+
+  const handleBluetoothDeviceStatusChange = (
+    status: BluetoothDeviceStatuses
+  ) => {
+    switch (status) {
+      case BluetoothDeviceStatuses.CONNECTED: {
+        setHasBluetoothDevice(true);
+        break;
+      }
+
+      case BluetoothDeviceStatuses.DISCONNECTED: {
+        setHasBluetoothDevice(false);
+        break;
+      }
+
+      default:
+        break;
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -85,22 +119,41 @@ export default function App() {
           onConnectionSuccess={handleOnConnectionSuccess}
           onNewBitrateReceived={handleOnNewBitrateReceived}
           onStreamStateChanged={handleOnStreamStateChanged}
+          onBluetoothDeviceStatusChanged={handleBluetoothDeviceStatusChange}
         />
       )}
       <View style={styles.footer_container}>
-        {isMuted ? (
-          <Button title="Unmute" onPress={handleUnmute} />
-        ) : (
-          <Button title="Mute" onPress={handleMute} />
-        )}
-        {isStreaming ? (
-          <Button title="Stop Stream" onPress={handleStopStream} />
-        ) : (
-          <Button title="Start Stream" onPress={handleStartStream} />
-        )}
-        <Button title="Switch Camera" onPress={handleSwitchCamera} />
+        <View style={styles.mute_container}>
+          {isMuted ? (
+            <Button type="circle" title="🔇" onPress={handleUnmute} />
+          ) : (
+            <Button type="circle" title="🔈" onPress={handleMute} />
+          )}
+        </View>
+        <View style={styles.stream_container}>
+          {isStreaming ? (
+            <Button type="circle" title="🟥" onPress={handleStopStream} />
+          ) : (
+            <Button type="circle" title="🔴" onPress={handleStartStream} />
+          )}
+        </View>
+        <View style={styles.controller_container}>
+          <Button type="circle" title="📷" onPress={handleSwitchCamera} />
+          {hasBluetoothDevice && (
+            <Button
+              type="circle"
+              title="🎙"
+              onPress={handleToggleMicrophoneModal}
+            />
+          )}
+        </View>
       </View>
       {isStreaming && <LiveBadge />}
+      <MicrophoneSelectModal
+        onSelect={handleMicrophoneSelect}
+        visible={microphoneModalVisibility}
+        onClose={handleToggleMicrophoneModal}
+      />
     </View>
   );
 }

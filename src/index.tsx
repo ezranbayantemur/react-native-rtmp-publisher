@@ -4,4 +4,6 @@ export {
   RTMPPublisherRefProps,
   StreamState,
   StreamStatus,
+  AudioInputType,
+  BluetoothDeviceStatuses,
 } from './types';

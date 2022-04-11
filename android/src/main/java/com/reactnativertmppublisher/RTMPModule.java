@@ -7,6 +7,7 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.reactnativertmppublisher.enums.AudioInputType;
 
 public class RTMPModule extends ReactContextBaseJavaModule {
   private final String REACT_MODULE_NAME = "RTMPPublisher";
@@ -148,6 +149,16 @@ public class RTMPModule extends ReactContextBaseJavaModule {
   public void toggleFlash(Promise promise) {
     try {
       RTMPManager.publisher.toggleFlash();
+    } catch (Exception e) {
+      promise.reject(e);
+    }
+  }
+
+  @ReactMethod
+  public void setAudioInput(int audioInputType, Promise promise) {
+    try {
+      AudioInputType selectedType = AudioInputType.values()[audioInputType];
+      RTMPManager.publisher.setAudioInput(selectedType);
     } catch (Exception e) {
       promise.reject(e);
     }

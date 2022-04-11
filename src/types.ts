@@ -53,6 +53,10 @@ export interface RTMPPublisherRefProps {
    * Toggles the flash
    */
   toggleFlash: () => Promise<void>;
+  /**
+   * Sets the audio input (microphone type)
+   */
+  setAudioInput: (audioInput: AudioInputType) => Promise<void>;
 }
 
 export interface RTMPPublisherProps {
@@ -77,4 +81,14 @@ export enum StreamState {
   CONNECTED = 'CONNECTED',
   DISCONNECTED = 'DISCONNECTED',
   FAILED = 'FAILED',
+}
+export enum BluetoothDeviceStatuses {
+  CONNECTING = 'CONNECTING',
+  CONNECTED = 'CONNECTED',
+  DISCONNECTED = 'DISCONNECTED',
+}
+
+export enum AudioInputType {
+  BLUETOOTH_HEADSET = 0,
+  SPEAKER = 1,
 }

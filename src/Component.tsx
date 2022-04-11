@@ -3,7 +3,7 @@ import {
   requireNativeComponent,
   ViewStyle,
 } from 'react-native';
-import type { StreamState } from './types';
+import type { StreamState, BluetoothDeviceStatuses } from './types';
 
 type RTMPData<T> = { data: T };
 
@@ -15,6 +15,9 @@ export type NewBitrateReceivedType = NativeSyntheticEvent<RTMPData<number>>;
 export type StreamStateChangedType = NativeSyntheticEvent<
   RTMPData<StreamState>
 >;
+export type BluetoothDeviceStatusChangedType = NativeSyntheticEvent<
+  RTMPData<BluetoothDeviceStatuses>
+>;
 export interface NativeRTMPPublisherProps {
   style?: ViewStyle;
   streamURL: string;
@@ -25,6 +28,9 @@ export interface NativeRTMPPublisherProps {
   onDisconnect?: (e: DisconnectType) => void;
   onNewBitrateReceived?: (e: NewBitrateReceivedType) => void;
   onStreamStateChanged?: (e: StreamStateChangedType) => void;
+  onBluetoothDeviceStatusChanged?: (
+    e: BluetoothDeviceStatusChangedType
+  ) => void;
 }
 export default requireNativeComponent<NativeRTMPPublisherProps>(
   'RTMPPublisher'

@@ -131,38 +131,42 @@ For live stream, Youtube gives you stream url and stream key, you can place the 
 
 ## Events
 
-|          Name          |    Returns    |                                        Description                                        |  Android | iOS |
-| :--------------------: | :-----------: | :---------------------------------------------------------------------------------------: | :------: |:---:|
-|  `onConnectionFailed`  |    `null`     |                        Invokes on connection fails to publish URL                         |     ✅    |  ✅ |
-| `onConnectionStarted`  |    `null`     |                        Invokes on connection start to publish URL                         |     ✅    |  ✅ |
-| `onConnectionSuccess`  |    `null`     |                       Invokes on connection success to publish URL                        |     ✅    |  ✅ |
-|     `onDisconnect`     |    `null`     |                          Invokes on disconnect from publish URL                           |     ✅    |  ✅ |
-| `onNewBitrateReceived` |    `null`     |                         Invokes on new bitrate received from URL                          |     ✅    |  ❌ |
-| `onStreamStateChanged` | `streamState` | Invokes on stream state changes. It can be use alternatively for above connection events. |     ✅    |  ✅ |
+|          Name                    |        Returns            |                                        Description                                        |  Android | iOS |
+| :------------------------------: | :-----------------------: | :---------------------------------------------------------------------------------------: | :------: |:---:|
+|      `onConnectionFailed`        |         `null`            |                        Invokes on connection fails to publish URL                         |     ✅    |  ✅ |
+|     `onConnectionStarted`        |         `null`            |                        Invokes on connection start to publish URL                         |     ✅    |  ✅ |
+|     `onConnectionSuccess`        |         `null`            |                       Invokes on connection success to publish URL                        |     ✅    |  ✅ |
+|         `onDisconnect`           |         `null`            |                          Invokes on disconnect from publish URL                           |     ✅    |  ✅ |
+|     `onNewBitrateReceived`       |         `null`            |                         Invokes on new bitrate received from URL                          |     ✅    |  ❌ |
+|     `onStreamStateChanged`       |      `StreamState`        | Invokes on stream state changes. It can be use alternatively for above connection events. |     ✅    |  ✅ |
+| `onBluetoothDeviceStatusChanged` | `BluetoothDeviceStatuses` |                        Invokes on bluetooth headset state changes.                        |     ✅    |  ❌ |
 
 ## Methods
 
-|        Name         |      Returns       |         Description         |   Android | iOS |
-| :-----------------: | :----------------: | :-------------------------: |  :------: |:---:|
-|    `startStream`    |   `Promise<void>`  |      Starts the stream      |     ✅    |  ✅ |
-|    `stopStream`     |   `Promise<void>`  |      Stops the stream       |     ✅    |  ✅ |
-|       `mute`        |   `Promise<void>`  |    Mutes the microphone     |     ✅    |  ✅ |
-|      `unmute`       |   `Promise<void>`  |   Unmutes the microphone    |     ✅    |  ✅ |
-|   `switchCamera`    |   `Promise<void>`  |     Switches the camera     |     ✅    |  ✅ |
-|   `toggleFlash`     |   `Promise<void>`  |    Toggles the flash        |     ✅    |  ✅ |
-|   `getPublishURL`   |  `Promise<string>` |    Gets the publish URL     |     ✅    |  ✅ |
-|      `isMuted`      |  `Promise<boolean>`|  Returns microphone state   |     ✅    |  ✅ |
-|    `isStreaming`    |  `Promise<boolean>`|   Returns streaming state   |     ✅    |  ✅ |
-|   `hasCongestion`   |  `Promise<boolean>`|    Returns if congestion    |     ✅    |  ❌ |
-|  `isAudioPrepared`  |  `Promise<boolean>`| Returns audio prepare state |     ✅    |  ✅ |
-|  `isVideoPrepared`  |  `Promise<boolean>`| Returns video prepare state |     ✅    |  ✅ |
-| `isCameraOnPreview` |  `Promise<boolean>`|    Returns camera is on     |     ✅    |  ❌ |
+|        Name         |          Returns          |         Description         |   Android | iOS |
+| :-----------------: | :------------------------:| :-------------------------: |  :------: |:---:|
+|    `startStream`    |       `Promise<void>`     |      Starts the stream      |     ✅    |  ✅ |
+|    `stopStream`     |       `Promise<void>`     |      Stops the stream       |     ✅    |  ✅ |
+|       `mute`        |       `Promise<void>`     |    Mutes the microphone     |     ✅    |  ✅ |
+|      `unmute`       |       `Promise<void>`     |   Unmutes the microphone    |     ✅    |  ✅ |
+|   `switchCamera`    |       `Promise<void>`     |     Switches the camera     |     ✅    |  ✅ |
+|   `toggleFlash`     |       `Promise<void>`     |    Toggles the flash        |     ✅    |  ✅ |
+|   `getPublishURL`   |      `Promise<string>`    |    Gets the publish URL     |     ✅    |  ✅ |
+|      `isMuted`      |      `Promise<boolean>`   |  Returns microphone state   |     ✅    |  ✅ |
+|    `isStreaming`    |      `Promise<boolean>`   |   Returns streaming state   |     ✅    |  ✅ |
+|   `hasCongestion`   |      `Promise<boolean>`   |    Returns if congestion    |     ✅    |  ❌ |
+|  `isAudioPrepared`  |      `Promise<boolean>`   | Returns audio prepare state |     ✅    |  ✅ |
+|  `isVideoPrepared`  |      `Promise<boolean>`   | Returns video prepare state |     ✅    |  ✅ |
+| `isCameraOnPreview` |      `Promise<boolean>`   |    Returns camera is on     |     ✅    |  ❌ |
+|   `setAudioInput`   |  `Promise<AudioInputType>`|    Sets microphone input    |     ✅    |  ❌ |
 
 ## Types
 
-| Name          |                      Value                       |
-| ------------- | :----------------------------------------------: |
-| `streamState` | `CONNECTING` `CONNECTED` `DISCONNECTED` `FAILED` |
+| Name                      |                      Value                       |
+| ------------------------- | :----------------------------------------------: |
+| `streamState`             | `CONNECTING` `CONNECTED` `DISCONNECTED` `FAILED` |
+| `BluetoothDeviceStatuses` | `CONNECTING` `CONNECTED` `DISCONNECTED`          |
+| `AudioInputType`          | `BLUETOOTH_HEADSET` `SPEAKER`                    |
 
 ## Used Native Packages
 

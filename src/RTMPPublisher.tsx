@@ -1,3 +1,4 @@
+import type { AudioInputType } from 'lib/typescript';
 import React, { forwardRef, useImperativeHandle } from 'react';
 import { NativeModules, ViewStyle } from 'react-native';
 import PublisherComponent, {
@@ -7,8 +8,13 @@ import PublisherComponent, {
   ConnectionSuccessType,
   NewBitrateReceivedType,
   StreamStateChangedType,
+  BluetoothDeviceStatusChangedType,
 } from './Component';
-import type { RTMPPublisherRefProps, StreamState } from './types';
+import type {
+  RTMPPublisherRefProps,
+  StreamState,
+  BluetoothDeviceStatuses,
+} from './types';
 
 const RTMPModule = NativeModules.RTMPPublisher;
 export interface RTMPPublisherProps {
@@ -40,6 +46,10 @@ export interface RTMPPublisherProps {
    * Returns parameter StreamState type
    */
   onStreamStateChanged?: (data: StreamState) => void;
+  /**
+   * Bluetooth device connection status
+   */
+  onBluetoothDeviceStatusChanged?: (data: BluetoothDeviceStatuses) => void;
 }
 
 const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
@@ -51,6 +61,7 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
       onDisconnect,
       onNewBitrateReceived,
       onStreamStateChanged,
+      onBluetoothDeviceStatusChanged,
       ...props
     },
     ref
@@ -81,6 +92,9 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
 
     const toggleFlash = () => RTMPModule.toggleFlash();
 
+    const setAudioInput = (audioInput: AudioInputType) =>
+      RTMPModule.setAudioInput(audioInput);
+
     const handleOnConnectionFailed = (e: ConnectionFailedType) => {
       onConnectionFailed && onConnectionFailed(e.nativeEvent.data);
     };
@@ -105,6 +119,13 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
       onStreamStateChanged && onStreamStateChanged(e.nativeEvent.data);
     };
 
+    const handleBluetoothDeviceStatusChanged = (
+      e: BluetoothDeviceStatusChangedType
+    ) => {
+      onBluetoothDeviceStatusChanged &&
+        onBluetoothDeviceStatusChanged(e.nativeEvent.data);
+    };
+
     useImperativeHandle(ref, () => ({
       startStream,
       stopStream,
@@ -119,6 +140,7 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
       unmute,
       switchCamera,
       toggleFlash,
+      setAudioInput,
     }));
 
     return (
@@ -130,6 +152,7 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
         onConnectionSuccess={handleOnConnectionSuccess}
         onNewBitrateReceived={handleOnNewBitrateReceived}
         onStreamStateChanged={handleOnStreamStateChanged}
+        onBluetoothDeviceStatusChanged={handleBluetoothDeviceStatusChanged}
       />
     );
   }

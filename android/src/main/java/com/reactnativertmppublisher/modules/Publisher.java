@@ -1,5 +1,7 @@
 package com.reactnativertmppublisher.modules;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaRecorder;
 import android.view.SurfaceView;
 
@@ -10,6 +12,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.pedro.rtplibrary.rtmp.RtmpCamera1;
+import com.reactnativertmppublisher.enums.AudioInputType;
 import com.reactnativertmppublisher.enums.StreamState;
 import com.reactnativertmppublisher.interfaces.ConnectionListener;
 import com.reactnativertmppublisher.utils.ObjectCaster;
@@ -18,16 +21,21 @@ public class Publisher {
   private final SurfaceView _surfaceView;
   private final RtmpCamera1 _rtmpCamera;
   private final ThemedReactContext _reactContext;
-  ConnectionChecker connectionChecker = new ConnectionChecker();
+  private final AudioManager _mAudioManager;
   private String _streamUrl;
   private String _streamName;
+  ConnectionChecker _connectionChecker = new ConnectionChecker();
+  BluetoothDeviceConnector _bluetoothDeviceConnector;
 
   public Publisher(ThemedReactContext reactContext, SurfaceView surfaceView) {
     _reactContext = reactContext;
     _surfaceView = surfaceView;
-    _rtmpCamera = new RtmpCamera1(surfaceView, connectionChecker);
+    _rtmpCamera = new RtmpCamera1(surfaceView, _connectionChecker);
+    _bluetoothDeviceConnector = new BluetoothDeviceConnector(reactContext);
 
-    connectionChecker.addListener(createConnectionListener());
+    _bluetoothDeviceConnector.addListener(createBluetoothDeviceListener());
+    _connectionChecker.addListener(createConnectionListener());
+    _mAudioManager = (AudioManager) reactContext.getSystemService(Context.AUDIO_SERVICE);
   }
 
   public RtmpCamera1 getRtmpCamera() {
@@ -35,16 +43,24 @@ public class Publisher {
   }
 
   public ConnectionListener createConnectionListener() {
-    return new ConnectionListener() {
-      @Override
-      public void onChange(String type, Object data) {
-        eventEffect(type);
-        WritableMap eventData = ObjectCaster.caster(data);
+    return (type, data) -> {
+      eventEffect(type);
+      WritableMap eventData = ObjectCaster.caster(data);
 
-          _reactContext
-            .getJSModule(RCTEventEmitter.class)
-            .receiveEvent(_surfaceView.getId(), type, eventData);
-      }
+        _reactContext
+          .getJSModule(RCTEventEmitter.class)
+          .receiveEvent(_surfaceView.getId(), type, eventData);
+    };
+  }
+
+  public ConnectionListener createBluetoothDeviceListener(){
+    return (type, data) -> {
+      eventEffect(type);
+      WritableMap eventData = ObjectCaster.caster(data);
+
+      _reactContext
+        .getJSModule(RCTEventEmitter.class)
+        .receiveEvent(_surfaceView.getId(), type, eventData);
     };
   }
 
@@ -185,6 +201,26 @@ public class Publisher {
       e.printStackTrace();
     }
   }
+
+  public void setAudioInput(AudioInputType audioInputType){
+    switch (audioInputType){
+      case BLUETOOTH_HEADSET: {
+        _mAudioManager.startBluetoothSco();
+        _mAudioManager.setBluetoothScoOn(true);
+        break;
+      }
+
+      case SPEAKER:{
+        if(_mAudioManager.isBluetoothScoOn()){
+          _mAudioManager.stopBluetoothSco();
+          _mAudioManager.setBluetoothScoOn(false);
+        };
+
+        _mAudioManager.setSpeakerphoneOn(true);
+        break;
+      }
+    };
+  };
   //endregion
 
 }

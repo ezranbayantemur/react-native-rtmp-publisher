@@ -18,4 +18,17 @@ export default StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
   },
+  mute_container: {
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+  stream_container: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  controller_container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
 });
