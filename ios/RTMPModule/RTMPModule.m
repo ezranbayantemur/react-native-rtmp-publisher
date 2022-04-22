@@ -74,4 +74,11 @@ RCT_EXTERN_METHOD(
                     reject: (RCTPromiseRejectBlock)reject
                   )
 
+
+RCT_EXTERN_METHOD(
+                    setAudioInput: (NSInteger)audioInput
+                    resolve: (RCTPromiseResolveBlock)resolve
+                    reject: (RCTPromiseRejectBlock)reject
+                  )
+
 @end

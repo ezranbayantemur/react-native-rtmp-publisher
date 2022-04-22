@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Modal, TouchableOpacity } from 'react-native';
+import { View, Text, Modal, TouchableOpacity, Platform } from 'react-native';
 import { AudioInputType } from 'react-native-rtmp-publisher';
 import Button from '../Button';
 
@@ -19,6 +19,10 @@ const initialMicrophoneValues = [
   {
     key: AudioInputType.BLUETOOTH_HEADSET,
     title: 'Bluetooth Headset',
+  },
+  {
+    key: AudioInputType.WIRED_HEADSET,
+    title: 'Wired Headset',
   },
 ];
 
@@ -42,6 +46,13 @@ const MicrophoneSelectModal = ({ visible, onSelect, onClose }: ButtonProps) => {
       <View style={styles.container}>
         <View style={styles.inner_container}>
           {initialMicrophoneValues.map((value) => {
+            if (
+              Platform.OS === 'android' &&
+              value.key === AudioInputType.WIRED_HEADSET
+            ) {
+              return;
+            }
+
             const status =
               selectedMicrophoneKey === value.key ? 'selected' : 'not_selected';
 

@@ -10,6 +10,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <AVFoundation/AVFoundation.h>
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -48,6 +49,38 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  AVAudioSession *session = AVAudioSession.sharedInstance;
+  NSError *error = nil;
+
+
+//  Implementation for bluetooth headset
+  if (@available(iOS 10.0, *)) {
+    [session
+      setCategory:AVAudioSessionCategoryPlayAndRecord
+      mode:AVAudioSessionModeVoiceChat
+      options:AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetooth
+      error:&error];
+  } else {
+    SEL selector = NSSelectorFromString(@"setCategory:withOptions:error:");
+    
+    NSArray * optionsArray =
+        [NSArray arrayWithObjects:
+          [NSNumber numberWithInteger:AVAudioSessionCategoryOptionAllowBluetooth],
+          [NSNumber numberWithInteger:AVAudioSessionCategoryOptionDefaultToSpeaker], nil];
+    
+    [session
+     performSelector:selector
+     withObject: AVAudioSessionCategoryPlayAndRecord
+     withObject: optionsArray
+    ];
+    
+    [session setMode:AVAudioSessionModeVoiceChat error:&error];
+  }
+  
+  [session setActive: YES error:&error];
+  //  Implementation for bluetooth headset
+  
   return YES;
 }
 

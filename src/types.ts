@@ -91,4 +91,5 @@ export enum BluetoothDeviceStatuses {
 export enum AudioInputType {
   BLUETOOTH_HEADSET = 0,
   SPEAKER = 1,
+  WIRED_HEADSET = 2,
 }

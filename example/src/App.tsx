@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import RTMPPublisher, {
   RTMPPublisherRefProps,
   StreamState,
@@ -139,7 +139,7 @@ export default function App() {
         </View>
         <View style={styles.controller_container}>
           <Button type="circle" title="📷" onPress={handleSwitchCamera} />
-          {hasBluetoothDevice && (
+          {(Platform.OS === 'ios' || hasBluetoothDevice) && (
             <Button
               type="circle"
               title="🎙"

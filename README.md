@@ -31,7 +31,53 @@ for iOS, on `/ios` directory
 ```sh
 pod install
 ```
+### If you wanna enable bluetooth microphone connection (like AirPod) you should add this snippet to `AppDelegate.m` 
+```objc
+#import <AVFoundation/AVFoundation.h> // <-- Add this import
+.. 
+.. 
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  ..
+  .. 
+  ..
+  ..
+
+  if (@available(iOS 10.0, *)) {
+      [session
+        setCategory:AVAudioSessionCategoryPlayAndRecord
+        mode:AVAudioSessionModeVoiceChat
+        options:AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetooth
+        error:&error];
+    } else {
+      SEL selector = NSSelectorFromString(@"setCategory:withOptions:error:");
+      
+      NSArray * optionsArray =
+          [NSArray arrayWithObjects:
+            [NSNumber numberWithInteger:AVAudioSessionCategoryOptionAllowBluetooth],
+            [NSNumber numberWithInteger:AVAudioSessionCategoryOptionDefaultToSpeaker], nil];
+      
+      [session
+        performSelector:selector
+        withObject: AVAudioSessionCategoryPlayAndRecord
+        withObject: optionsArray
+      ];
+      
+      [session 
+        setMode:AVAudioSessionModeVoiceChat 
+        error:&error
+      ];
+    }
+    
+    [session 
+      setActive:YES 
+      error:&error
+    ];
+
+    return YES;
+  }
+```
 ## Example Project
 
 Clone the repo and on `/example` directory
@@ -91,6 +137,7 @@ async function publisherActions() {
   await publisherRef.current.isAudioPrepared();
   await publisherRef.current.isVideoPrepared();
   await publisherRef.current.isCameraOnPreview();
+  await publisherRef.current.setAudioInput();
 }
 
 <RTMPPublisher
@@ -158,16 +205,17 @@ For live stream, Youtube gives you stream url and stream key, you can place the 
 |  `isAudioPrepared`  |      `Promise<boolean>`   | Returns audio prepare state |     ✅    |  ✅ |
 |  `isVideoPrepared`  |      `Promise<boolean>`   | Returns video prepare state |     ✅    |  ✅ |
 | `isCameraOnPreview` |      `Promise<boolean>`   |    Returns camera is on     |     ✅    |  ❌ |
-|   `setAudioInput`   |  `Promise<AudioInputType>`|    Sets microphone input    |     ✅    |  ❌ |
+|   `setAudioInput`   |  `Promise<AudioInputType>`|    Sets microphone input    |     ✅    |  ✅ |
 
 ## Types
 
-| Name                      |                      Value                       |
-| ------------------------- | :----------------------------------------------: |
-| `streamState`             | `CONNECTING` `CONNECTED` `DISCONNECTED` `FAILED` |
-| `BluetoothDeviceStatuses` | `CONNECTING` `CONNECTED` `DISCONNECTED`          |
-| `AudioInputType`          | `BLUETOOTH_HEADSET` `SPEAKER`                    |
+| Name                      |                      Value                          |
+| ------------------------- | :--------------------------------------------------:|
+| `streamState`             | `CONNECTING`, `CONNECTED`, `DISCONNECTED`, `FAILED` |
+| `BluetoothDeviceStatuses` | `CONNECTING`, `CONNECTED`, `DISCONNECTED`           |
+| `AudioInputType`          | `BLUETOOTH_HEADSET`, `SPEAKER`, `WIRED_HEADSET`     |
 
+* AudioInputType: WIRED_HEADSET type supporting in only iOS. On Android it affects nothing. If a wired headset connected to Android device, device uses it as default.
 ## Used Native Packages
 
 - Android: [rtmp-rtsp-stream-client-java](https://github.com/pedroSG94/rtmp-rtsp-stream-client-java)

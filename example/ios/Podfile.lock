@@ -192,7 +192,7 @@ PODS:
     - react-native-config/App (= 1.4.5)
   - react-native-config/App (1.4.5):
     - React-Core
-  - react-native-rtmp-publisher (0.3.3):
+  - react-native-rtmp-publisher (0.3.6):
     - HaishinKit (~> 1.2.3)
     - React-Core
   - React-RCTActionSheet (0.63.4):
@@ -373,7 +373,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
   react-native-config: 6502b1879f97ed5ac570a029961fc35ea606cd14
-  react-native-rtmp-publisher: 1df2d8be2bd279f539f715d1554a1e1f499b78bb
+  react-native-rtmp-publisher: 2ed905b8cafc97a83cdf7f257de557963b0177f8
   React-RCTActionSheet: 89a0ca9f4a06c1f93c26067af074ccdce0f40336
   React-RCTAnimation: 1bde3ecc0c104c55df246eda516e0deb03c4e49b
   React-RCTBlob: a97d378b527740cc667e03ebfa183a75231ab0f0

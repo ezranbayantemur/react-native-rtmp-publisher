@@ -1,4 +1,3 @@
-import type { AudioInputType } from 'lib/typescript';
 import React, { forwardRef, useImperativeHandle } from 'react';
 import { NativeModules, ViewStyle } from 'react-native';
 import PublisherComponent, {
@@ -14,6 +13,7 @@ import type {
   RTMPPublisherRefProps,
   StreamState,
   BluetoothDeviceStatuses,
+  AudioInputType,
 } from './types';
 
 const RTMPModule = NativeModules.RTMPPublisher;
@@ -47,7 +47,7 @@ export interface RTMPPublisherProps {
    */
   onStreamStateChanged?: (data: StreamState) => void;
   /**
-   * Bluetooth device connection status
+   * Callback for bluetooth device connection changes
    */
   onBluetoothDeviceStatusChanged?: (data: BluetoothDeviceStatuses) => void;
 }
