@@ -3,6 +3,7 @@ package com.reactnativertmppublisher.modules;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaRecorder;
+import android.util.Log;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,8 @@ public class Publisher {
     _bluetoothDeviceConnector.addListener(createBluetoothDeviceListener());
     _connectionChecker.addListener(createConnectionListener());
     _mAudioManager = (AudioManager) reactContext.getSystemService(Context.AUDIO_SERVICE);
+
+    setAudioInput(AudioInputType.SPEAKER);
   }
 
   public RtmpCamera1 getRtmpCamera() {
@@ -202,25 +205,39 @@ public class Publisher {
     }
   }
 
-  public void setAudioInput(AudioInputType audioInputType){
+  public void setAudioInput(@NonNull AudioInputType audioInputType){
+    System.out.println(audioInputType);
     switch (audioInputType){
       case BLUETOOTH_HEADSET: {
-        _mAudioManager.startBluetoothSco();
-        _mAudioManager.setBluetoothScoOn(true);
-        break;
+        System.out.println("ble");
+        try{
+          _mAudioManager.startBluetoothSco();
+          _mAudioManager.setBluetoothScoOn(true);
+          break;
+        }
+        catch (Exception error){
+          System.out.println(error);
+          break;
+        }
       }
 
       case SPEAKER:{
-        if(_mAudioManager.isBluetoothScoOn()){
-          _mAudioManager.stopBluetoothSco();
-          _mAudioManager.setBluetoothScoOn(false);
-        };
+        try{
+          if(_mAudioManager.isBluetoothScoOn()){
+            _mAudioManager.stopBluetoothSco();
+            _mAudioManager.setBluetoothScoOn(false);
+          }
 
-        _mAudioManager.setSpeakerphoneOn(true);
-        break;
+          _mAudioManager.setSpeakerphoneOn(true);
+          break;
+        }
+        catch (Exception error){
+          System.out.println(error);
+          break;
+        }
       }
-    };
-  };
+    }
+  }
   //endregion
 
 }
