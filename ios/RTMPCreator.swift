@@ -16,11 +16,11 @@ class RTMPCreator {
     public static var isStreaming: Bool = false
 
     public static func setStreamUrl(url: String){
-    _streamUrl = url
+        _streamUrl = url
     }
 
     public static func setStreamName(name: String){
-    _streamName = name
+        _streamName = name
     }
 
   
@@ -36,17 +36,16 @@ class RTMPCreator {
     }
   
     public static func startPublish(){
-    connection.requireNetworkFramework = true
-    connection.connect(_streamUrl)
-    stream.publish(_streamName)
-    isStreaming = true
-
+        connection.requireNetworkFramework = true
+        connection.connect(_streamUrl)
+        stream.publish(_streamName)
+        isStreaming = true
     }
   
     public static func stopPublish(){
-    stream.close()
-    connection.close()
-    isStreaming = false
+        stream.close()
+        connection.close()
+        isStreaming = false
     }
     
     public static func setAudioInput(audioInput: Int){

@@ -49,12 +49,11 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  
+
+//  Implementation for bluetooth headset
   AVAudioSession *session = AVAudioSession.sharedInstance;
   NSError *error = nil;
 
-
-//  Implementation for bluetooth headset
   if (@available(iOS 10.0, *)) {
     [session
       setCategory:AVAudioSessionCategoryPlayAndRecord
