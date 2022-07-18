@@ -31,37 +31,36 @@ class RTMPView: UIView {
   }
   
   override init(frame: CGRect) {
-      do {
-        super.init(frame: frame)
+    super.init(frame: frame)
+      
+    hkView = MTHKView(frame: UIScreen.main.bounds)
+    hkView.videoGravity = .resizeAspectFill
+    
+    RTMPCreator.stream.captureSettings = [
+        .fps: 30,
+        .sessionPreset: AVCaptureSession.Preset.hd1920x1080,
+        .continuousAutofocus: true,
+        .continuousExposure: true
+    ]
 
-        try hkView = MTHKView(frame: UIScreen.main.bounds)
-        try RTMPCreator.stream.captureSettings = [
-            .fps: 30,
-            .sessionPreset: AVCaptureSession.Preset.high,
-            .continuousAutofocus: true,
-            .continuousExposure: true
-        ]
+    RTMPCreator.stream.videoSettings = [
+        .width: 720,
+        .height: 1280,
+        .bitrate: 3000 * 1024,
+        .scalingMode: ScalingMode.cropSourceToCleanAperture
+        
+    ]
 
-        try RTMPCreator.stream.videoSettings = [
-            .width: 720,
-            .height: 1280,
-            .bitrate: 3000 * 1024
-        ]
+    RTMPCreator.stream.attachAudio(AVCaptureDevice.default(for: .audio))
+    RTMPCreator.stream.attachCamera(DeviceUtil.device(withPosition: AVCaptureDevice.Position.back))
 
-        try RTMPCreator.stream.attachAudio(AVCaptureDevice.default(for: .audio))
-        try RTMPCreator.stream.attachCamera(DeviceUtil.device(withPosition: AVCaptureDevice.Position.back))
+    RTMPCreator.connection.addEventListener(.rtmpStatus, selector: #selector(statusHandler), observer: self)
 
-        try RTMPCreator.connection.addEventListener(.rtmpStatus, selector: #selector(statusHandler), observer: self)
+    hkView.attachStream(RTMPCreator.stream)
 
-        try hkView.attachStream(RTMPCreator.stream)
-
-        try self.addSubview(hkView)
-      }
-      catch let error {
-          print(error)
-      }
-
-  }
+    self.addSubview(hkView)
+      
+}
     
     required init?(coder aDecoder: NSCoder) {
        fatalError("init(coder:) has not been implemented")
@@ -106,8 +105,6 @@ class RTMPView: UIView {
            break
        }
     }
-  
-  
 
     public func changeStreamState(status: String){
       if onStreamStateChanged != nil {
