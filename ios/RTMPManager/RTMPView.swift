@@ -32,7 +32,8 @@ class RTMPView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-      
+    UIApplication.shared.isIdleTimerDisabled = true
+    
     hkView = MTHKView(frame: UIScreen.main.bounds)
     hkView.videoGravity = .resizeAspectFill
     
@@ -65,6 +66,10 @@ class RTMPView: UIView {
     required init?(coder aDecoder: NSCoder) {
        fatalError("init(coder:) has not been implemented")
      }
+    
+    override func removeFromSuperview() {
+        print("ON REMOVE")
+    }
   
     @objc
     private func statusHandler(_ notification: Notification){
