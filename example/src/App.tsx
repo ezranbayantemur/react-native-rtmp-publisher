@@ -7,6 +7,7 @@ import RTMPPublisher, {
   AudioInputType,
   BluetoothDeviceStatuses,
 } from 'react-native-rtmp-publisher';
+// @ts-ignore
 import Config from 'react-native-config';
 
 import styles from './App.styles';
