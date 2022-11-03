@@ -2,9 +2,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 target 'RtmpPublish' do
-  platform :ios, '9.0'
+  platform :ios, '10.0'
 
   # Pods for RtmpPublish
-  pod 'HaishinKit', '~> 1.2.3'
+  pod 'HaishinKit', '~> 1.2.7'
 
 end

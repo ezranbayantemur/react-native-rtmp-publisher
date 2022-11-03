@@ -4,7 +4,7 @@ PODS:
   - Logboard (2.2.4)
 
 DEPENDENCIES:
-  - HaishinKit (~> 1.2.3)
+  - HaishinKit (~> 1.2.7)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -15,6 +15,6 @@ SPEC CHECKSUMS:
   HaishinKit: 5463efd52fa4de2018db95547a5b09ce50495444
   Logboard: 660364cbd45aa42fd79637f0cdfba3c950c613d8
 
-PODFILE CHECKSUM: 6e06988fcc628de50363fba1ac1278a5886bc9f4
+PODFILE CHECKSUM: 2b6e0630814218ff1550dd20a2230bf7c381ad23
 
 COCOAPODS: 1.11.3
