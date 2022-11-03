@@ -19,9 +19,9 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - HaishinKit (1.2.3):
+  - HaishinKit (1.2.7):
     - Logboard (~> 2.2.2)
-  - Logboard (2.2.2)
+  - Logboard (2.2.4)
   - RCTRequired (0.63.4)
   - RCTTypeSafety (0.63.4):
     - FBLazyVector (= 0.63.4)
@@ -360,8 +360,8 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: f2c97f2529dd79c083355182cc158c9f98f4bd6e
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
-  HaishinKit: abf62d8ed7fc380c97a96077a0e37c7f79e69e08
-  Logboard: 0ab6bbd984ed032b3f0b615cef06779a73445c80
+  HaishinKit: 5463efd52fa4de2018db95547a5b09ce50495444
+  Logboard: 660364cbd45aa42fd79637f0cdfba3c950c613d8
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
   RCTTypeSafety: 8c9c544ecbf20337d069e4ae7fd9a377aadf504b
   React: b0a957a2c44da4113b0c4c9853d8387f8e64e615
