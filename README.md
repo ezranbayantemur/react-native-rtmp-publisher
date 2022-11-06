@@ -1,6 +1,5 @@
 <p align="center">
-<img src="https://user-images.githubusercontent.com/42299721/200197008-4ef156af-9657-4858-9c4f-ea4ede57debc.png" alt="logo" width="90%"/>
-</p>
+<img src="https://user-images.githubusercontent.com/42299721/200197084-5e8ebcf2-320e-49cf-8504-0ad94773c218.png" alt="logo" width="90%"/>
 
 <p align="center">
 <img src="https://img.shields.io/github/license/ezranbayantemur/react-native-rtmp-publisher" alt="github/license" />
