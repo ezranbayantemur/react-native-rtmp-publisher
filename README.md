@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://user-images.githubusercontent.com/42299721/150039268-bba167fe-c7de-471a-9587-565308d71f20.gif" alt="logo" width="60%" />
+<img src="https://user-images.githubusercontent.com/42299721/200196365-2891c196-f804-41ba-9f7d-477854510426.png" alt="logo" width="80%"/>
 </p>
 
 <p align="center">
@@ -11,8 +11,6 @@
 <img src="https://img.shields.io/github/stars/ezranbayantemur/react-native-rtmp-publisher?style=social" alt="github/stars" />
 <img src="https://img.shields.io/github/forks/ezranbayantemur/react-native-rtmp-publisher?style=social" alt="github/forks" />
 </p>
-
-# React Native RTMP Publisher
 
 📹 Live stream RTMP publisher for React Native with built in camera support!
 
