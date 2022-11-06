@@ -12,6 +12,8 @@
 <img src="https://img.shields.io/github/forks/ezranbayantemur/react-native-rtmp-publisher?style=social" alt="github/forks" />
 </p>
 
+# React Native RTMP Publisher
+
 📹 Live stream RTMP publisher for React Native with built in camera support!
 
 ## Installation
@@ -26,11 +28,11 @@ or
 yarn add react-native-rtmp-publisher
 ```
 
-for iOS
+and for iOS
 ```sh
 cd ios && pod install
 ```
-### Android
+## Android
 
 Add Android Permission for camera and audio to `AndroidManifest.xml`
 
@@ -40,7 +42,7 @@ Add Android Permission for camera and audio to `AndroidManifest.xml`
 ```
 
 
-### iOS
+## iOS
 
 Add iOS Permission for camera and audio to `Info.plist`
 
@@ -50,7 +52,8 @@ Add iOS Permission for camera and audio to `Info.plist`
 <key>NSMicrophoneUsageDescription</key>
  <string>AUDIO PERMISSION DESCRIPTION</string>
 ```
-### If you wanna enable bluetooth microphone connection (like AirPod) you should add this snippet to `AppDelegate.m` 
+
+Implement these changes to `AppDelegate.m` (or `AppDelegate.mm`) 
 ```objc
 #import <AVFoundation/AVFoundation.h> // <-- Add this import
 .. 
@@ -62,6 +65,10 @@ Add iOS Permission for camera and audio to `Info.plist`
   .. 
   ..
   ..
+
+  // <-- Add this section -->
+  AVAudioSession *session = AVAudioSession.sharedInstance;
+  NSError *error = nil;
 
   if (@available(iOS 10.0, *)) {
       [session
@@ -93,18 +100,18 @@ Add iOS Permission for camera and audio to `Info.plist`
       setActive:YES 
       error:&error
     ];
+    // <-- Add this section -->
 
     return YES;
   }
 ```
 ## Example Project
 
-Clone the repo and on `/example` directory
+Clone the repo and run
 
 ```sh
-yarn
+yarn example
 ```
-
 and
 
 ```sh
@@ -133,20 +140,20 @@ async function publisherActions() {
   await publisherRef.current.isAudioPrepared();
   await publisherRef.current.isVideoPrepared();
   await publisherRef.current.isCameraOnPreview();
-  await publisherRef.current.setAudioInput();
+  await publisherRef.current.setAudioInput(audioInput: AudioInputType);
 }
 
 <RTMPPublisher
   ref={publisherRef}
   streamURL="rtmp://your-publish-url"
   streamName="stream-name"
-  onConnectionFailedRtmp={() => null}
-  onConnectionStartedRtmp={() => null}
-  onConnectionSuccessRtmp={() => null}
-  onDisconnectRtmp={() => null}
-  onNewBitrateRtmp={() => null}
-  onStreamStateChanged={(s: streamState) => null}
-/>;
+  onConnectionFailedRtmp={() => ...}
+  onConnectionStartedRtmp={() => ...}
+  onConnectionSuccessRtmp={() => ...}
+  onDisconnectRtmp={() => ...}
+  onNewBitrateRtmp={() => ...}
+  onStreamStateChanged={(status: streamState) => ...}
+/>
 ```
 
 ## Props
@@ -214,8 +221,8 @@ For live stream, Youtube gives you stream url and stream key, you can place the 
 * AudioInputType: WIRED_HEADSET type supporting in only iOS. On Android it affects nothing. If a wired headset connected to Android device, device uses it as default.
 ## Used Native Packages
 
-- Android: [rtmp-rtsp-stream-client-java](https://github.com/pedroSG94/rtmp-rtsp-stream-client-java)
-- iOS: [HaishinKit.swift](https://github.com/shogo4405/HaishinKit.swift)
+- Android: [rtmp-rtsp-stream-client-java](https://github.com/pedroSG94/rtmp-rtsp-stream-client-java) [2.2.1]
+- iOS: [HaishinKit.swift](https://github.com/shogo4405/HaishinKit.swift) [1.2.7]
 
 ## Contributing
 
