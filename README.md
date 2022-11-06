@@ -26,10 +26,29 @@ or
 yarn add react-native-rtmp-publisher
 ```
 
-for iOS, on `/ios` directory
-
+for iOS
 ```sh
-pod install
+cd ios && pod install
+```
+### Android
+
+Add Android Permission for camera and audio to `AndroidManifest.xml`
+
+```xml
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+```
+
+
+### iOS
+
+Add iOS Permission for camera and audio to `Info.plist`
+
+```xml
+<key>NSCameraUsageDescription</key>
+ <string>CAMERA PERMISSION DESCRIPTION</string>
+<key>NSMicrophoneUsageDescription</key>
+ <string>AUDIO PERMISSION DESCRIPTION</string>
 ```
 ### If you wanna enable bluetooth microphone connection (like AirPod) you should add this snippet to `AppDelegate.m` 
 ```objc
@@ -95,29 +114,6 @@ yarn ios (or yarn android)
 You can use Youtube for live stream server. You can check [Live on Youtube](https://support.google.com/youtube/answer/2474026?hl=tr&ref_topic=9257984)
 
 ## Usage
-
-### Android
-
-Add Android Permission for camera and audio to `AndroidManifest.xml`
-
-```xml
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-```
-
-### iOS
-
-Add iOS Permission for camera and audio to `Info.plist`
-
-```xml
-<key>NSCameraUsageDescription</key>
- <string>CAMERA PERMISSION DESCRIPTION</string>
-<key>NSMicrophoneUsageDescription</key>
- <string>AUDIO PERMISSION DESCRIPTION</string>
-```
-
-### React Native
-
 ```js
 import { RTMPPublisher } from 'react-native-rtmp-publisher';
 
