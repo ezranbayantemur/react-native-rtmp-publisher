@@ -13,6 +13,8 @@
 
 📹 Live stream RTMP publisher for React Native with built in camera support!
 
+### ⚠️🛠️ Support for [the new architecture](https://reactnative.dev/docs/the-new-architecture/landing-page) is under development
+
 ## Installation
 
 ```sh
