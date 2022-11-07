@@ -1,6 +1,5 @@
 <p align="center">
-<img src="https://user-images.githubusercontent.com/42299721/150039268-bba167fe-c7de-471a-9587-565308d71f20.gif" alt="logo" width="60%" />
-</p>
+<img src="https://user-images.githubusercontent.com/42299721/200197084-5e8ebcf2-320e-49cf-8504-0ad94773c218.png" alt="logo" width="90%"/>
 
 <p align="center">
 <img src="https://img.shields.io/github/license/ezranbayantemur/react-native-rtmp-publisher" alt="github/license" />
@@ -12,9 +11,9 @@
 <img src="https://img.shields.io/github/forks/ezranbayantemur/react-native-rtmp-publisher?style=social" alt="github/forks" />
 </p>
 
-# React Native RTMP Publisher
-
 📹 Live stream RTMP publisher for React Native with built in camera support!
+
+### ⚠️🛠️ Support for [the new architecture](https://reactnative.dev/docs/the-new-architecture/landing-page) is under development
 
 ## Installation
 
