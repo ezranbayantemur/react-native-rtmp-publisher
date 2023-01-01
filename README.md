@@ -121,7 +121,7 @@ You can use Youtube for live stream server. You can check [Live on Youtube](http
 
 ## Usage
 ```js
-import { RTMPPublisher } from 'react-native-rtmp-publisher';
+import RTMPPublisher from 'react-native-rtmp-publisher';
 
 // ...
 
