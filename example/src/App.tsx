@@ -7,8 +7,6 @@ import RTMPPublisher, {
   AudioInputType,
   BluetoothDeviceStatuses,
 } from 'react-native-rtmp-publisher';
-// @ts-ignore
-import Config from 'react-native-config';
 
 import styles from './App.styles';
 
@@ -17,8 +15,8 @@ import LiveBadge from './components/LiveBadge';
 import usePermissions from './hooks/usePermissions';
 import MicrophoneSelectModal from './components/MicrophoneSelectModal';
 
-const STREAM_URL = Config.STREAM_URL;
-const STREAM_NAME = Config.STREAM_NAME;
+const STREAM_URL = 'YOUR_STREAM_URL'; // ex: rtmp://a.rtmp.youtube.com/live2
+const STREAM_NAME = 'YOUR_STREAM_NAME'; // ex: abcd-1234-abcd-1234-abcd
 
 export default function App() {
   const publisherRef = useRef<RTMPPublisherRefProps>(null);
