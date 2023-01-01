@@ -57,6 +57,6 @@ repositories {
 dependencies {
   //noinspection GradleDynamicVersion
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation 'com.github.pedroSG94.rtmp-rtsp-stream-client-java:rtplibrary:2.2.1'
+  implementation 'com.github.pedroSG94.rtmp-rtsp-stream-client-java:rtplibrary:2.2.2'
   implementation "com.facebook.react:react-native:+"  // From node_modules
 }
