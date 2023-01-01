@@ -38,6 +38,7 @@ Add Android Permission for camera and audio to `AndroidManifest.xml`
 ```xml
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 ```
 
 
