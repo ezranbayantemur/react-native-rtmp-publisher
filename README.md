@@ -220,7 +220,7 @@ For live stream, Youtube gives you stream url and stream key, you can place the 
 * AudioInputType: WIRED_HEADSET type supporting in only iOS. On Android it affects nothing. If a wired headset connected to Android device, device uses it as default.
 ## Used Native Packages
 
-- Android: [rtmp-rtsp-stream-client-java](https://github.com/pedroSG94/rtmp-rtsp-stream-client-java) [2.2.1]
+- Android: [rtmp-rtsp-stream-client-java](https://github.com/pedroSG94/rtmp-rtsp-stream-client-java) [2.2.2]
 - iOS: [HaishinKit.swift](https://github.com/shogo4405/HaishinKit.swift) [1.2.7]
 
 ## Contributing
