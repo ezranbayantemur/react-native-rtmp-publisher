@@ -1,0 +1,24 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          npm install
+      - name: Build iOS
+        run: |
+          cd ios
+          pod install
+          cd ..
+          npx react-native run-ios
+      - name: Build Android
+        run: |
+          npx react-native run-android
