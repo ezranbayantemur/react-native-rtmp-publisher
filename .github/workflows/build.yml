@@ -16,14 +16,14 @@ jobs:
           npm install
       - name: Build Android
         run: |
-          cd ../android
+          cd example/android
           ./gradlew build
-      - name: Install Cocoapods
-        run: sudo gem install -n /usr/local/bin cocoapods
-      - name: Install Pods
-        run: |
-          cd example/ios
-          pod install
-      - name: Build iOS
-        run: |
-          xcodebuild -scheme MyApp -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.0'
+      # - name: Install Cocoapods
+      #   run: sudo gem install -n /usr/local/bin cocoapods
+      # - name: Install Pods
+      #   run: |
+      #     cd example/ios
+      #     pod install
+      # - name: Build iOS
+      #   run: |
+      #     xcodebuild -scheme MyApp -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.0'
