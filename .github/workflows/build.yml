@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - master
+      - dev
 
 jobs:
   build:
@@ -13,6 +14,8 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
+      - name: Install Cocoapods
+        run: sudo gem install -n /usr/local/bin cocoapods
       - name: Build iOS
         run: |
           cd ios
