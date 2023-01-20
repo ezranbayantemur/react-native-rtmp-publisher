@@ -110,12 +110,12 @@ Implement these changes to `AppDelegate.m` (or `AppDelegate.mm`)
 Clone the repo and run
 
 ```sh
-yarn example
+yarn
 ```
 and
 
 ```sh
-yarn ios (or yarn android)
+cd example && yarn ios (or yarn android)
 ```
 
 You can use Youtube for live stream server. You can check [Live on Youtube](https://support.google.com/youtube/answer/2474026?hl=tr&ref_topic=9257984)
