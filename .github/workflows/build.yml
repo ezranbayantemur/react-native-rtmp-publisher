@@ -45,7 +45,7 @@ jobs:
 
       - name: Unit tests
         run: |
-          yarn test --coverage --verbose
+          yarn test --coverage --updateSnapshot --verbose
 
       - name: Building package
         run: |
