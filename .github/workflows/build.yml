@@ -8,6 +8,7 @@ on:
 
 jobs:
   lint:
+    runs-on: ubuntu-latest
     steps:
       - run:
           name: Lint files
@@ -15,6 +16,7 @@ jobs:
             yarn lint
 
   typescript:
+    runs-on: ubuntu-latest
     steps:
       - run:
           name: Typescript checking
