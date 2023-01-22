@@ -34,7 +34,20 @@ jobs:
       - name: Install dependencies
         run: |
           yarn
-      - name: Build Android
+
+      - name: Lint files
+        run: |
+          yarn lint
+
+      - name: Typescript checking
+        run: |
+          yarn typescript
+
+      - name: Building package
+        run: |
+          yarn prepare
+
+      - name: Building Android
         run: |
           cd example/android
           ./gradlew build
