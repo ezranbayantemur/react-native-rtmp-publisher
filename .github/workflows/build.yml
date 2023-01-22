@@ -82,4 +82,4 @@ jobs:
 
       - name: Build iOS
         run: |
-          xcodebuild -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS build
+          cd example/ios && xcodebuild -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS build
