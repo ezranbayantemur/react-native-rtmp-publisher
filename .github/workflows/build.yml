@@ -75,6 +75,6 @@ jobs:
       #   run: |
       #     cd ios && pod install
 
-      # - name: Build iOS
-      #   run: |
-      #     cd example/ios && xcodebuild -allowProvisioningUpdates -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS build
+      - name: Build iOS
+        run: |
+          cd example/ios && xcodebuild -allowProvisioningUpdates -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS build
