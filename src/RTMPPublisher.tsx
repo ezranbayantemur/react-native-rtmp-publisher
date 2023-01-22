@@ -1,13 +1,13 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { NativeModules, ViewStyle } from 'react-native';
+import { NativeModules, type ViewStyle } from 'react-native';
 import PublisherComponent, {
-  DisconnectType,
-  ConnectionFailedType,
-  ConnectionStartedType,
-  ConnectionSuccessType,
-  NewBitrateReceivedType,
-  StreamStateChangedType,
-  BluetoothDeviceStatusChangedType,
+  type DisconnectType,
+  type ConnectionFailedType,
+  type ConnectionStartedType,
+  type ConnectionSuccessType,
+  type NewBitrateReceivedType,
+  type StreamStateChangedType,
+  type BluetoothDeviceStatusChangedType,
 } from './Component';
 import type {
   RTMPPublisherRefProps,
@@ -18,6 +18,7 @@ import type {
 
 const RTMPModule = NativeModules.RTMPPublisher;
 export interface RTMPPublisherProps {
+  testID?: string;
   style?: ViewStyle;
   streamURL: string;
   streamName: string;

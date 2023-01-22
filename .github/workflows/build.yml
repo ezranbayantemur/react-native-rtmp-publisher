@@ -43,6 +43,10 @@ jobs:
         run: |
           yarn typescript
 
+      - name: Unit tests
+        run: |
+          yarn test --coverage --updateSnapshot
+
       - name: Building package
         run: |
           yarn prepare
@@ -51,6 +55,7 @@ jobs:
         run: |
           cd example/android
           ./gradlew build
+
       # - name: Install Cocoapods
       #   run: sudo gem install -n /usr/local/bin cocoapods
       # - name: Install Pods
