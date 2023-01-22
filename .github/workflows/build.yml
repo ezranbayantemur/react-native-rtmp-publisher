@@ -7,6 +7,19 @@ on:
       - dev
 
 jobs:
+  lint:
+    steps:
+      - run:
+          name: Lint files
+          command: |
+            yarn lint
+
+  typescript:
+    steps:
+      - run:
+          name: Typescript checking
+          command: |
+            yarn typescript
   build:
     runs-on: ubuntu-latest
     steps:
