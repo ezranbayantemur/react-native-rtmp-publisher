@@ -43,6 +43,10 @@ jobs:
         run: |
           yarn typescript
 
+      - name: Unit tests
+        run: |
+          yarn test
+
       - name: Building package
         run: |
           yarn prepare
