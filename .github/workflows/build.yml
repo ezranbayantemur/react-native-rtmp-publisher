@@ -39,11 +39,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      # - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-      #   name: List the state of node modules
-      #   continue-on-error: true
-      #   run: npm list
-
       - name: Install dependencies
         run: |
           yarn
@@ -68,13 +63,6 @@ jobs:
       #   run: |
       #     cd example/android && ./gradlew build && cd ..
 
-      # - name: Install Cocoapods
-      #   run: sudo gem install -n /usr/local/bin cocoapods
-
-      # - name: Install Pods
-      #   run: |
-      #     cd ios && pod install
-
       - name: Build iOS
         run: |
-          cd example/ios && xcodebuild -allowProvisioningUpdates -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS build
+          cd example/ios && xcodebuild -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS -configuration Debug build
