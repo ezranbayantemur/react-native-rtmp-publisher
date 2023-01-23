@@ -44,28 +44,6 @@ jobs:
         run: |
           yarn prepare
 
-  build_ios:
-    needs: build_package
-    runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Caching Pods
-        id: cache-pods
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-cocoapods
-        with:
-          path: ./example/ios/Pods
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-
-      - name: Building iOS
-        run: |
-          cd ./example/ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
-
   build_android:
     needs: build_package
     runs-on: ubuntu-latest
@@ -87,3 +65,27 @@ jobs:
       - name: Building Android
         run: |
           cd example/android && ./gradlew build
+
+  build_ios:
+    needs: build_android
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Caching Pods
+        id: cache-pods
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-cocoapods
+        with:
+          path: ./example/ios/Pods
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - name: Building iOS
+        run: |
+          cd ./example/ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
+
+
