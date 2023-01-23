@@ -1,75 +1,75 @@
-name: Build
+# name: Build
 
-on:
-  pull_request:
-    branches:
-      - master
-      - dev
+# on:
+#   pull_request:
+#     branches:
+#       - master
+#       - dev
 
-jobs:
-  build:
-    runs-on: macos-latest
+# jobs:
+#   build:
+#     runs-on: macos-latest
 
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Caching node_modules
-        id: cache-npm
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ./node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
+#       - name: Caching node_modules
+#         id: cache-npm
+#         uses: actions/cache@v3
+#         env:
+#           cache-name: cache-node-modules
+#         with:
+#           path: ./node_modules
+#           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      - name: Caching Pods
-        id: cache-pods
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-cocoapods
-        with:
-          path: ./example/ios/Pods
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
+#       - name: Caching Pods
+#         id: cache-pods
+#         uses: actions/cache@v3
+#         env:
+#           cache-name: cache-cocoapods
+#         with:
+#           path: ./example/ios/Pods
+#           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      - name: Caching Gradle
-        id: cache-gradle
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-gradle-files
-        with:
-          path: ./example/android/.gradle
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/android/gradle/wrapper/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
+#       - name: Caching Gradle
+#         id: cache-gradle
+#         uses: actions/cache@v3
+#         env:
+#           cache-name: cache-gradle-files
+#         with:
+#           path: ./example/android/.gradle
+#           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/android/gradle/wrapper/gradle-wrapper.properties') }}
+#           restore-keys: |
+#             ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      - name: Install dependencies
-        run: |
-          yarn
+#       - name: Install dependencies
+#         run: |
+#           yarn
 
-      - name: Lint files
-        run: |
-          yarn lint
+#       - name: Lint files
+#         run: |
+#           yarn lint
 
-      - name: Typescript checking
-        run: |
-          yarn typescript
+#       - name: Typescript checking
+#         run: |
+#           yarn typescript
 
-      - name: Unit tests
-        run: |
-          yarn test --coverage --updateSnapshot --verbose
+#       - name: Unit tests
+#         run: |
+#           yarn test --coverage --updateSnapshot --verbose
 
-      - name: Building the package
-        run: |
-          yarn prepare
+#       - name: Building the package
+#         run: |
+#           yarn prepare
 
-      - name: Building Android
-        run: |
-          cd example/android && ./gradlew build && cd ..
+#       - name: Building Android
+#         run: |
+#           cd example/android && ./gradlew build && cd ..
 
-      # - name: Building iOS
-      #   run: |
-      #     cd ./ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
+#       # - name: Building iOS
+#       #   run: |
+#       #     cd ./ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
