@@ -64,7 +64,7 @@ jobs:
 
       - name: Building iOS
         run: |
-          cd ./ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
+          cd ./example/ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
 
   build_android:
     needs: build_package
@@ -86,4 +86,4 @@ jobs:
 
       - name: Building Android
         run: |
-          cd example/android && ./gradlew build && cd ..
+          cd example/android && ./gradlew build
