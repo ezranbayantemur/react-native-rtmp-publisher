@@ -20,9 +20,7 @@ jobs:
           cache-name: cache-node-modules
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
+          key: rtmp-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
 
       - name: Caching Pods
         id: cache-pods
@@ -31,9 +29,7 @@ jobs:
           cache-name: cache-cocoapods
         with:
           path: ./example/ios/Pods
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
+          key: rtmp-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
 
       - name: Install dependencies
         run: |
@@ -62,6 +58,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Caching node_modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ./node_modules
+          key: rtmp-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        run: |
+          yarn
+
       - name: Caching Gradle
         id: cache-gradle
         uses: actions/cache@v3
@@ -73,6 +82,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
+      - name: Install dependencies
+        run: |
+          yarn
+
       - name: Building Android
         run: |
           cd example/android && ./gradlew build
@@ -83,6 +96,28 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Caching node_modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ./node_modules
+          key: rtmp-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Caching Pods
+        id: cache-pods
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-cocoapods
+        with:
+          path: ./example/ios/Pods
+          key: rtmp-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
+
+      - name: Install dependencies
+        run: |
+          yarn
 
       - name: Building iOS
         run: |
