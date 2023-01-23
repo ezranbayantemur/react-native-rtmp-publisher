@@ -45,7 +45,7 @@ jobs:
           yarn prepare
 
   build_ios:
-    needs: 
+    needs: build_package
     runs-on: macos-latest
 
     steps:
