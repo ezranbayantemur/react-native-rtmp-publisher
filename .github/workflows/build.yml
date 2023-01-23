@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Cache node modules
+      - name: Caching node_modules
         id: cache-npm
         uses: actions/cache@v3
         env:
@@ -23,10 +23,8 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
 
-      - name: Cache Pods
+      - name: Caching Pods
         id: cache-pods
         uses: actions/cache@v3
         env:
@@ -36,8 +34,17 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+
+      - name: Caching Gradle
+        id: cache-gradle
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-gradle-files
+        with:
+          path: ./example/android/.gradle
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
 
       - name: Install dependencies
         run: |
@@ -55,14 +62,14 @@ jobs:
         run: |
           yarn test --coverage --updateSnapshot --verbose
 
-      - name: Building package
+      - name: Building the package
         run: |
           yarn prepare
 
-      # - name: Building Android
-      #   run: |
-      #     cd example/android && ./gradlew build && cd ..
-
-      - name: Build iOS
+      - name: Building Android
         run: |
-          cd example/ios && xcodebuild -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
+          cd example/android && ./gradlew build && cd ..
+
+      # - name: Building iOS
+      #   run: |
+      #     cd ./ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
