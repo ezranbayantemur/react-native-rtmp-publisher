@@ -7,61 +7,74 @@ on:
       - dev
 
 jobs:
-  build:
+  build_package:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
-      - name: Cache node modules
+      - name: Caching node_modules
         id: cache-npm
         uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.npm
+          path: ./node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: List the state of node modules
-        continue-on-error: true
-        run: npm list
-
       - name: Install dependencies
         run: |
-          yarn
-
+          yarn install && cd example && yarn install
       - name: Lint files
         run: |
           yarn lint
-
       - name: Typescript checking
         run: |
           yarn typescript
-
       - name: Unit tests
         run: |
           yarn test --coverage --updateSnapshot --verbose
-
-      - name: Building package
+      - name: Building the package
         run: |
           yarn prepare
+  build_ios:
+    needs: build_package
+    runs-on: macos-latest
 
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Caching Pods
+        id: cache-pods
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-cocoapods
+        with:
+          path: ./example/ios/Pods
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Building iOS
+        run: |
+          cd ./example/ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
+  build_android:
+    needs: build_package
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Caching Gradle
+        id: cache-gradle
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-gradle-files
+        with:
+          path: ./example/android/.gradle
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
       - name: Building Android
         run: |
-          cd example/android
-          ./gradlew build
-
-      # - name: Install Cocoapods
-      #   run: sudo gem install -n /usr/local/bin cocoapods
-      # - name: Install Pods
-      #   run: |
-      #     cd example/ios
-      #     pod install
-      # - name: Build iOS
-      #   run: |
-      #     xcodebuild -scheme MyApp -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.0'
+          cd example/android && ./gradlew build
