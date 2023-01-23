@@ -84,8 +84,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
+      - name: Install Pods
+        run: |
+          cd ./example/ios && pod install
+
       - name: Building iOS
         run: |
-          cd ./example/ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
+          xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
 
 
