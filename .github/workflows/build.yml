@@ -45,6 +45,7 @@ jobs:
           yarn prepare
 
   build_ios:
+    needs: build_package
     runs-on: macos-latest
 
     steps:
@@ -70,6 +71,7 @@ jobs:
           cd ./ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
 
   build_android:
+    needs: build_ios
     runs-on: ubuntu-latest
 
     steps:
