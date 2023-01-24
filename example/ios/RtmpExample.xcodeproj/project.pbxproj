@@ -381,8 +381,8 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DISABLE_MANUAL_TARGET_ORDER_BUILD_WARNING = YES;
 				DEVELOPMENT_TEAM = 4336WAVNB4;
+				DISABLE_MANUAL_TARGET_ORDER_BUILD_WARNING = YES;
 				INFOPLIST_FILE = RtmpExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
