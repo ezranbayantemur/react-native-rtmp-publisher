@@ -7,43 +7,108 @@ on:
       - dev
 
 jobs:
-  build:
+  build_dependency:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
-      - name: Cache node modules
+      - name: Caching node_modules
         id: cache-npm
         uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          path: ./node_modules
+          key: rtmp-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
 
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: List the state of node modules
-        continue-on-error: true
-        run: npm list
+      - name: Caching Pods
+        id: cache-pods
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-cocoapods
+        with:
+          path: ./example/ios/Pods
+          key: rtmp-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
 
       - name: Install dependencies
         run: |
           yarn
-      - name: Build Android
+      - name: Lint files
         run: |
-          cd example/android
-          ./gradlew build
-      # - name: Install Cocoapods
-      #   run: sudo gem install -n /usr/local/bin cocoapods
-      # - name: Install Pods
-      #   run: |
-      #     cd example/ios
-      #     pod install
-      # - name: Build iOS
-      #   run: |
-      #     xcodebuild -scheme MyApp -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.0'
+          yarn lint
+      - name: Typescript checking
+        run: |
+          yarn typescript
+      - name: Unit tests
+        run: |
+          yarn test --coverage --updateSnapshot --verbose
+      - name: Building the package
+        run: |
+          yarn prepare
+  build_android:
+    needs: build_dependency
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Caching node_modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ./node_modules
+          key: rtmp-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        run: |
+          yarn
+      - name: Caching Gradle
+        id: cache-gradle
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-gradle-files
+        with:
+          path: ./example/android/.gradle
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./example/android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Install dependencies
+        run: |
+          yarn
+      - name: Building Android
+        run: |
+          cd example/android && ./gradlew build
+  build_ios:
+    needs: build_dependency
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Caching node_modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ./node_modules
+          key: rtmp-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Caching Pods
+        id: cache-pods
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-cocoapods
+        with:
+          path: ./example/ios/Pods
+          key: rtmp-build-${{ env.cache-name }}-${{ hashFiles('./example/ios/Podfile.lock') }}
+
+      - name: Install dependencies
+        run: |
+          yarn
+      - name: Building iOS
+        run: |
+          cd example/ios && xcodebuild -quiet -workspace RtmpExample.xcworkspace -scheme RtmpExample -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build
