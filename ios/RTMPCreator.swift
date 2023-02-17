@@ -38,7 +38,6 @@ class RTMPCreator {
     public static func startPublish(){
         connection.requireNetworkFramework = true
         connection.connect(_streamUrl)
-        stream.publish(_streamName)
         isStreaming = true
     }
   
