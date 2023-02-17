@@ -69,6 +69,8 @@ class RTMPView: UIView {
     
     override func removeFromSuperview() {
         print("ON REMOVE")
+        RTMPCreator.stream.attachAudio(nil)
+        RTMPCreator.stream.attachCamera(nil)
     }
   
     @objc
