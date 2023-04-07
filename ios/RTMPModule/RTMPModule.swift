@@ -27,18 +27,20 @@ class RTMPModule: NSObject {
 
     @objc
     func mute(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
-        RTMPCreator.stream.audioSettings[.muted] = true
+        RTMPCreator.stream.hasAudio = false
     }
 
     @objc
     func unmute(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
-        RTMPCreator.stream.audioSettings[.muted] = false
+        RTMPCreator.stream.hasAudio = true
     }
 
     @objc
     func switchCamera(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
         cameraPosition = cameraPosition == .back ? .front : .back
-        RTMPCreator.stream.attachCamera(DeviceUtil.device(withPosition: cameraPosition))
+        RTMPCreator.stream.attachCamera(
+            AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition)
+        )
     }
 
     @objc

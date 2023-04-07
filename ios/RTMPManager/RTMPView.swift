@@ -37,12 +37,9 @@ class RTMPView: UIView {
     hkView = MTHKView(frame: UIScreen.main.bounds)
     hkView.videoGravity = .resizeAspectFill
     
-    RTMPCreator.stream.captureSettings = [
-        .fps: 30,
-        .sessionPreset: AVCaptureSession.Preset.hd1920x1080,
-        .continuousAutofocus: true,
-        .continuousExposure: true
-    ]
+    RTMPCreator.stream.frameRate = 30
+    RTMPCreator.stream.sessionPreset = AVCaptureSession.Preset.hd1920x1080
+      
 
     RTMPCreator.stream.videoSettings = [
         .width: 720,
@@ -53,7 +50,7 @@ class RTMPView: UIView {
     ]
 
     RTMPCreator.stream.attachAudio(AVCaptureDevice.default(for: .audio))
-    RTMPCreator.stream.attachCamera(DeviceUtil.device(withPosition: AVCaptureDevice.Position.back))
+    RTMPCreator.stream.attachCamera(AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back))
 
     RTMPCreator.connection.addEventListener(.rtmpStatus, selector: #selector(statusHandler), observer: self)
 
