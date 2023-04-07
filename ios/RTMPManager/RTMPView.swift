@@ -64,9 +64,6 @@ class RTMPView: UIView {
        fatalError("init(coder:) has not been implemented")
      }
     
-    override func removeFromSuperview() {
-        print("ON REMOVE")
-    }
   
     @objc
     private func statusHandler(_ notification: Notification){
