@@ -20,6 +20,11 @@ class RTMPCreator {
     private static var _streamUrl: String = ""
     private static var _streamName: String = ""
     public static var isStreaming: Bool = false
+    public static var videoSettings: VideoSettingsType = VideoSettingsType(
+        width: 720,
+        height: 1280,
+        bitrate: 3000
+    )
 
     public static func setStreamUrl(url: String){
         _streamUrl = url
@@ -47,7 +52,8 @@ class RTMPCreator {
         isStreaming = true
     }
     
-    public static func setVideoSettings(_ videoSettings: VideoSettingsType) {
+    public static func setVideoSettings(_ newVideoSettings: VideoSettingsType) {
+        videoSettings = newVideoSettings
         stream.videoSettings = [
             .width: videoSettings.width,
             .height: videoSettings.height,

@@ -40,13 +40,11 @@ class RTMPView: UIView {
     RTMPCreator.stream.frameRate = 30
     RTMPCreator.stream.sessionPreset = AVCaptureSession.Preset.hd1920x1080
       
-
     RTMPCreator.stream.videoSettings = [
-        .width: 720,
-        .height: 1280,
-        .bitrate: 3000 * 1024,
-        .scalingMode: ScalingMode.cropSourceToCleanAperture
-        
+      .width: RTMPCreator.videoSettings.width,
+      .height: RTMPCreator.videoSettings.height,
+      .bitrate: RTMPCreator.videoSettings.bitrate * 1024,
+      .scalingMode: ScalingMode.cropSourceToCleanAperture
     ]
 
     RTMPCreator.stream.attachAudio(AVCaptureDevice.default(for: .audio))
