@@ -57,6 +57,10 @@ export interface RTMPPublisherRefProps {
    * Sets the audio input (microphone type)
    */
   setAudioInput: (audioInput: AudioInputType) => Promise<void>;
+  /**
+   * Sets video settings quality
+   */
+  setVideoSettings: (audioInput: VideoSettingsType) => Promise<void>;
 }
 
 export interface RTMPPublisherProps {
@@ -92,4 +96,10 @@ export enum AudioInputType {
   BLUETOOTH_HEADSET = 0,
   SPEAKER = 1,
   WIRED_HEADSET = 2,
+}
+
+export interface VideoSettingsType {
+  width: number;
+  height: number;
+  bitrate: number;
 }

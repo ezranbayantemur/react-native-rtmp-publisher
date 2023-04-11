@@ -19,6 +19,19 @@ class RTMPModule: NSObject {
     func startStream(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
         RTMPCreator.startPublish()
     }
+    
+    @objc
+    func setVideoSettings(_ videoSettingsDict: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+        guard let width = videoSettingsDict["width"] as? Int,
+              let height = videoSettingsDict["height"] as? Int,
+              let bitrate = videoSettingsDict["bitrate"] as? Int else {
+            reject("INVALID_ARGUMENTS", "Invalid video settings", nil)
+            return
+        }
+        let videoSettings = VideoSettingsType(width: width, height: height, bitrate: bitrate)
+        resolve(RTMPCreator.setVideoSettings(videoSettings))
+    }
+
 
     @objc
     func stopStream(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){

@@ -7,6 +7,12 @@
 import HaishinKit
 import AVFoundation
 
+struct VideoSettingsType {
+    var width: Int
+    var height: Int
+    var bitrate: Int
+}
+
 class RTMPCreator {
     public static let connection: RTMPConnection = RTMPConnection()
     public static let stream: RTMPStream = RTMPStream(connection: connection)
@@ -39,6 +45,15 @@ class RTMPCreator {
         connection.requireNetworkFramework = true
         connection.connect(_streamUrl)
         isStreaming = true
+    }
+    
+    public static func setVideoSettings(_ videoSettings: VideoSettingsType) {
+        stream.videoSettings = [
+            .width: videoSettings.width,
+            .height: videoSettings.height,
+            .bitrate: videoSettings.bitrate * 1024,
+            .scalingMode: ScalingMode.cropSourceToCleanAperture
+        ]
     }
   
     public static func stopPublish(){
