@@ -51,19 +51,26 @@ class RTMPView: UIView {
 
     RTMPCreator.stream.attachAudio(AVCaptureDevice.default(for: .audio))
     RTMPCreator.stream.attachCamera(AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back))
-
+      
     RTMPCreator.connection.addEventListener(.rtmpStatus, selector: #selector(statusHandler), observer: self)
 
     hkView.attachStream(RTMPCreator.stream)
-
-    self.addSubview(hkView)
       
+    self.addSubview(hkView)
+
 }
     
     required init?(coder aDecoder: NSCoder) {
        fatalError("init(coder:) has not been implemented")
      }
-    
+
+    override func removeFromSuperview() {
+        RTMPCreator.stream.attachAudio(nil)
+        RTMPCreator.stream.attachCamera(nil)
+        if #available(iOS 13.0, *) {
+            RTMPCreator.stream.attachMultiCamera(nil)
+        }
+     }
   
     @objc
     private func statusHandler(_ notification: Notification){
