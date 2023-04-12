@@ -29,7 +29,15 @@ class RTMPView: UIView {
       RTMPCreator.setStreamName(name: streamName as String)
     }
   }
-  
+    
+  @objc var videoSettings: NSDictionary = NSDictionary(
+    dictionary: [
+      "width": 720,
+      "height": 1280,
+      "bitrate": 3000
+    ]
+  )
+    
   override init(frame: CGRect) {
     super.init(frame: frame)
     UIApplication.shared.isIdleTimerDisabled = true
@@ -40,28 +48,34 @@ class RTMPView: UIView {
     RTMPCreator.stream.frameRate = 30
     RTMPCreator.stream.sessionPreset = AVCaptureSession.Preset.hd1920x1080
       
+      print("initialize videoSettings",videoSettings)
+      
+      let width = videoSettings["width"] as? Int ?? 720
+      let height = videoSettings["height"] as? Int ?? 1280
+      let bitrate = videoSettings["bitrate"] as? Int ?? 3000
+      
     RTMPCreator.stream.videoSettings = [
-      .width: RTMPCreator.videoSettings.width,
-      .height: RTMPCreator.videoSettings.height,
-      .bitrate: RTMPCreator.videoSettings.bitrate * 1024,
+      .width: width,
+      .height: height,
+      .bitrate: bitrate * 1024,
       .scalingMode: ScalingMode.cropSourceToCleanAperture
     ]
 
     RTMPCreator.stream.attachAudio(AVCaptureDevice.default(for: .audio))
     RTMPCreator.stream.attachCamera(AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back))
-      
+
     RTMPCreator.connection.addEventListener(.rtmpStatus, selector: #selector(statusHandler), observer: self)
 
     hkView.attachStream(RTMPCreator.stream)
-      
-    self.addSubview(hkView)
 
+    self.addSubview(hkView)
+      
 }
     
     required init?(coder aDecoder: NSCoder) {
        fatalError("init(coder:) has not been implemented")
      }
-
+    
     override func removeFromSuperview() {
         RTMPCreator.stream.attachAudio(nil)
         RTMPCreator.stream.attachCamera(nil)

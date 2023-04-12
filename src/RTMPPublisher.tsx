@@ -24,6 +24,10 @@ export interface RTMPPublisherProps {
   streamURL: string;
   streamName: string;
   /**
+   * Video settings for video
+   */
+  videoSettings?: VideoSettingsType;
+  /**
    * Callback for connection fails on RTMP server
    */
   onConnectionFailed?: (data: string) => void;

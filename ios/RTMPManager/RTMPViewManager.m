@@ -18,6 +18,8 @@ RCT_EXPORT_VIEW_PROPERTY(streamURL, NSString)
 
 RCT_EXPORT_VIEW_PROPERTY(streamName, NSString)
 
+RCT_EXPORT_VIEW_PROPERTY(videoSettings, NSDictionary)
+
 RCT_EXPORT_VIEW_PROPERTY(onDisconnect, RCTDirectEventBlock)
 
 RCT_EXPORT_VIEW_PROPERTY(onConnectionFailed, RCTDirectEventBlock)

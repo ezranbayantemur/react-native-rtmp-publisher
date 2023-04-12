@@ -17,6 +17,11 @@ import MicrophoneSelectModal from './components/MicrophoneSelectModal';
 
 const STREAM_URL = 'YOUR_STREAM_URL'; // ex: rtmp://a.rtmp.youtube.com/live2
 const STREAM_NAME = 'YOUR_STREAM_NAME'; // ex: abcd-1234-abcd-1234-abcd
+const VIDEO_SETTINGS = {
+  width: 720,
+  height: 1080,
+  bitrate: 3000,
+};
 
 export default function App() {
   const publisherRef = useRef<RTMPPublisherRefProps>(null);
@@ -111,6 +116,7 @@ export default function App() {
           ref={publisherRef}
           streamURL={STREAM_URL}
           streamName={STREAM_NAME}
+          videoSettings={VIDEO_SETTINGS}
           style={styles.publisher_camera}
           onDisconnect={handleOnDisconnect}
           onConnectionFailed={handleOnConnectionFailed}
