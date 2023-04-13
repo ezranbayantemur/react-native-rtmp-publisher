@@ -30,14 +30,14 @@ class RTMPView: UIView {
       RTMPCreator.setStreamName(name: streamName as String)
     }
   }
-    
+  
   @objc var videoSettingsDictionary: NSDictionary = NSDictionary(
-    dictionary: [
-      "width": 720,
-      "height": 1280,
+      dictionary: [
+        "width": 720,
+        "height": 1280,
         "bitrate": 3000 * 1000,
         "audioBitrate": 192 * 1000
-    ]
+      ]
   ){
     didSet {
         let width = videoSettingsDictionary["width"] as? Int ?? 720
@@ -46,10 +46,10 @@ class RTMPView: UIView {
         let audioBitrate = videoSettingsDictionary["audioBitrate"] as? Int ?? (192 * 1000)
         
         RTMPCreator.setVideoSettings(VideoSettingsType(width: width, height: height, bitrate: bitrate, audioBitrate: audioBitrate)
-  )
+        )
     }
   }
-    
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     UIApplication.shared.isIdleTimerDisabled = true
@@ -67,7 +67,7 @@ class RTMPView: UIView {
       .continuousAutofocus: true,
       .continuousExposure: true,
     ]
-      
+
     RTMPCreator.stream.videoSettings = [
       .width: RTMPCreator.videoSettings.width,
       .height: RTMPCreator.videoSettings.height,
