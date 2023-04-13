@@ -93,9 +93,6 @@ class RTMPView: UIView {
     override func removeFromSuperview() {
         RTMPCreator.stream.attachAudio(nil)
         RTMPCreator.stream.attachCamera(nil)
-        if #available(iOS 13.0, *) {
-            RTMPCreator.stream.attachMultiCamera(nil)
-        }
      }
   
     @objc
