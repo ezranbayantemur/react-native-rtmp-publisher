@@ -30,13 +30,24 @@ class RTMPView: UIView {
     }
   }
     
-  @objc var videoSettings: NSDictionary = NSDictionary(
+  @objc var videoSettingsDictionary: NSDictionary = NSDictionary(
     dictionary: [
       "width": 720,
       "height": 1280,
-      "bitrate": 3000
+        "bitrate": 3000 * 1000,
+        "audioBitrate": 192 * 1000
     ]
+  ){
+    didSet {
+        let width = videoSettingsDictionary["width"] as? Int ?? 720
+        let height = videoSettingsDictionary["height"] as? Int ?? 1280
+        let bitrate = videoSettingsDictionary["bitrate"] as? Int ?? (3000 * 1000)
+        let audioBitrate = videoSettingsDictionary["audioBitrate"] as? Int ?? (192 * 1000)
+        
+        RTMPCreator.setVideoSettings(VideoSettingsType(width: width, height: height, bitrate: bitrate, audioBitrate: audioBitrate)
   )
+    }
+  }
     
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -45,20 +56,23 @@ class RTMPView: UIView {
     hkView = MTHKView(frame: UIScreen.main.bounds)
     hkView.videoGravity = .resizeAspectFill
     
-    RTMPCreator.stream.frameRate = 30
-    RTMPCreator.stream.sessionPreset = AVCaptureSession.Preset.hd1920x1080
+    RTMPCreator.stream.audioSettings = [
+        .bitrate: RTMPCreator.videoSettings.audioBitrate
+    ]
       
-      print("initialize videoSettings",videoSettings)
-      
-      let width = videoSettings["width"] as? Int ?? 720
-      let height = videoSettings["height"] as? Int ?? 1280
-      let bitrate = videoSettings["bitrate"] as? Int ?? 3000
+    RTMPCreator.stream.captureSettings = [
+      .fps: 30,
+      .sessionPreset: AVCaptureSession.Preset.hd1920x1080,
+      .continuousAutofocus: true,
+      .continuousExposure: true,
+    ]
       
     RTMPCreator.stream.videoSettings = [
-      .width: width,
-      .height: height,
-      .bitrate: bitrate * 1024,
-      .scalingMode: ScalingMode.cropSourceToCleanAperture
+      .width: RTMPCreator.videoSettings.width,
+      .height: RTMPCreator.videoSettings.height,
+      .bitrate: RTMPCreator.videoSettings.bitrate,
+      .scalingMode: ScalingMode.cropSourceToCleanAperture,
+      .profileLevel: kVTProfileLevel_H264_High_AutoLevel
     ]
 
     RTMPCreator.stream.attachAudio(AVCaptureDevice.default(for: .audio))

@@ -21,6 +21,7 @@ const VIDEO_SETTINGS = {
   width: 720,
   height: 1080,
   bitrate: 3000,
+  audioBitrate: 192 * 1000,
 };
 
 export default function App() {

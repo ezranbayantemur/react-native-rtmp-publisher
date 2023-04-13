@@ -6,11 +6,13 @@
 //
 import HaishinKit
 import AVFoundation
+import VideoToolbox
 
 struct VideoSettingsType {
     var width: Int
     var height: Int
     var bitrate: Int
+    var audioBitrate: Int
 }
 
 class RTMPCreator {
@@ -23,7 +25,8 @@ class RTMPCreator {
     public static var videoSettings: VideoSettingsType = VideoSettingsType(
         width: 720,
         height: 1280,
-        bitrate: 3000
+        bitrate: 3000 * 1024,
+        audioBitrate: 128 * 1000
     )
 
     public static func setStreamUrl(url: String){
@@ -57,8 +60,13 @@ class RTMPCreator {
         stream.videoSettings = [
             .width: videoSettings.width,
             .height: videoSettings.height,
-            .bitrate: videoSettings.bitrate * 1024,
-            .scalingMode: ScalingMode.cropSourceToCleanAperture
+            .bitrate: videoSettings.bitrate,
+            .scalingMode: ScalingMode.cropSourceToCleanAperture,
+            .profileLevel: kVTProfileLevel_H264_High_AutoLevel
+        ]
+
+        RTMPCreator.stream.audioSettings = [
+            .bitrate: videoSettings.audioBitrate
         ]
     }
   
