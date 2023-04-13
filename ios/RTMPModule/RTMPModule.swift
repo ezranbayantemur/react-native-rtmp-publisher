@@ -40,12 +40,12 @@ class RTMPModule: NSObject {
 
     @objc
     func mute(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
-        RTMPCreator.stream.hasAudio = false
+        RTMPCreator.stream.audioSettings[.muted] = true
     }
 
     @objc
     func unmute(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
-        RTMPCreator.stream.hasAudio = true
+        RTMPCreator.stream.audioSettings[.muted] = false
     }
 
     @objc
@@ -63,7 +63,7 @@ class RTMPModule: NSObject {
 
     @objc
     func isMuted(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
-        resolve(RTMPCreator.stream.hasAudio)
+        resolve(RTMPCreator.stream.audioSettings[.muted])
     }
 
     @objc
