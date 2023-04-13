@@ -31,7 +31,7 @@ class RTMPView: UIView {
     }
   }
   
-  @objc var videoSettingsDictionary: NSDictionary = NSDictionary(
+  @objc var videoSettings: NSDictionary = NSDictionary(
       dictionary: [
         "width": 720,
         "height": 1280,
@@ -40,10 +40,10 @@ class RTMPView: UIView {
       ]
   ){
     didSet {
-        let width = videoSettingsDictionary["width"] as? Int ?? 720
-        let height = videoSettingsDictionary["height"] as? Int ?? 1280
-        let bitrate = videoSettingsDictionary["bitrate"] as? Int ?? (3000 * 1000)
-        let audioBitrate = videoSettingsDictionary["audioBitrate"] as? Int ?? (192 * 1000)
+        let width = videoSettings["width"] as? Int ?? 720
+        let height = videoSettings["height"] as? Int ?? 1280
+        let bitrate = videoSettings["bitrate"] as? Int ?? (3000 * 1000)
+        let audioBitrate = videoSettings["audioBitrate"] as? Int ?? (192 * 1000)
         
         RTMPCreator.setVideoSettings(VideoSettingsType(width: width, height: height, bitrate: bitrate, audioBitrate: audioBitrate)
         )
