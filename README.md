@@ -147,12 +147,12 @@ async function publisherActions() {
   ref={publisherRef}
   streamURL="rtmp://your-publish-url"
   streamName="stream-name"
-  videoSettings={
-    width: 720,
-    height: 1080,
-    bitrate: 3000 * 1024,
+  videoSettings={{
+    width: 1080,
+    height: 1920,
+    bitrate: 5000 * 1024,
     audioBitrate: 192 * 1000
-  }
+  }}
   onConnectionFailedRtmp={() => ...}
   onConnectionStartedRtmp={() => ...}
   onConnectionSuccessRtmp={() => ...}
