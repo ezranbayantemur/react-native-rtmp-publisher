@@ -8,6 +8,7 @@
 import UIKit
 import HaishinKit
 import AVFoundation
+import VideoToolbox
 
 class RTMPView: UIView {
   private var hkView: MTHKView!
