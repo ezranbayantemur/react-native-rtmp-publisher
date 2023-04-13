@@ -19,7 +19,7 @@ class RTMPModule: NSObject {
     func startStream(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
         RTMPCreator.startPublish()
     }
-    
+
     @objc
     func setVideoSettings(_ videoSettingsDict: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
         guard let width = videoSettingsDict["width"] as? Int,
@@ -28,7 +28,9 @@ class RTMPModule: NSObject {
             reject("INVALID_ARGUMENTS", "Invalid video settings", nil)
             return
         }
-        let videoSettings = VideoSettingsType(width: width, height: height, bitrate: bitrate)
+        let audioBitrate = videoSettingsDict["audioBitrate"] as? Int ?? 128000
+        let videoSettings = VideoSettingsType(width: width, height: height, bitrate: bitrate, audioBitrate: audioBitrate)
+        
         resolve(RTMPCreator.setVideoSettings(videoSettings))
     }
 
@@ -51,6 +53,10 @@ class RTMPModule: NSObject {
     @objc
     func switchCamera(_ resolve: (RCTPromiseResolveBlock), reject: (RCTPromiseRejectBlock)){
         cameraPosition = cameraPosition == .back ? .front : .back
+        
+        RTMPCreator.stream.captureSettings = [
+            .isVideoMirrored: cameraPosition == .back ? false : true
+        ]
         RTMPCreator.stream.attachCamera(
             AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition)
         )
