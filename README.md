@@ -147,6 +147,12 @@ async function publisherActions() {
   ref={publisherRef}
   streamURL="rtmp://your-publish-url"
   streamName="stream-name"
+  videoSettings={
+    width: 720,
+    height: 1080,
+    bitrate: 3000 * 1024,
+    audioBitrate: 192 * 1000
+  }
   onConnectionFailedRtmp={() => ...}
   onConnectionStartedRtmp={() => ...}
   onConnectionSuccessRtmp={() => ...}
@@ -162,6 +168,7 @@ async function publisherActions() {
 | :----------: | :------: | :------: | :-----------------------------------: |
 | `streamURL`  | `string` |  `true`  | Publish URL address with RTM Protocol |
 | `streamName` | `string` |  `true`  |          Stream name or key           |
+| `videoSettings` | `VideoSettingsType` |  `false`  |   Video settings for video        |
 
 ### Youtube Example
 
@@ -209,6 +216,7 @@ For live stream, Youtube gives you stream url and stream key, you can place the 
 |  `isVideoPrepared`  |      `Promise<boolean>`   | Returns video prepare state |     ✅    |  ✅ |
 | `isCameraOnPreview` |      `Promise<boolean>`   |    Returns camera is on     |     ✅    |  ❌ |
 |   `setAudioInput`   |  `Promise<AudioInputType>`|    Sets microphone input    |     ✅    |  ✅ |
+|`setVideoSettings`   | `Promise<VideoSettingsType>`| Sets camera quality settings|     ❌  |  ✅ |
 
 ## Types
 
@@ -217,6 +225,7 @@ For live stream, Youtube gives you stream url and stream key, you can place the 
 | `streamState`             | `CONNECTING`, `CONNECTED`, `DISCONNECTED`, `FAILED` |
 | `BluetoothDeviceStatuses` | `CONNECTING`, `CONNECTED`, `DISCONNECTED`           |
 | `AudioInputType`          | `BLUETOOTH_HEADSET`, `SPEAKER`, `WIRED_HEADSET`     |
+| `VideoSettingsType`       | `{width: number; height: number; bitrate: number; audioBitrate: number}`    |
 
 * AudioInputType: WIRED_HEADSET type supporting in only iOS. On Android it affects nothing. If a wired headset connected to Android device, device uses it as default.
 ## Used Native Packages
