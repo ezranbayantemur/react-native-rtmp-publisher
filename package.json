@@ -33,7 +33,7 @@
     "release": "dotenv release-it --",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "pnpm install example && npx pod-install example/ios ",
-    "build": "pnpm pack",
+    "build": "pnpm install && pnpm pack",
     "unpack": "for file in react-native-rtmp-publisher*.tgz; do tar -xzf \"$file\"; done",
     "deletePackage": "rm -r package && rm -r react-native-rtmp-publisher*.tgz"
   },
