@@ -15,12 +15,14 @@
     "cpp",
     "react-native-rtmp-publisher.podspec",
     "!lib/typescript/example",
+    "!lib/commonjs/test",
+    "!lib/module/test",
+    "!lib/typescript/test",
     "!android/build",
     "!ios/build",
     "!**/__tests__",
     "!**/__fixtures__",
-    "!**/__mocks__",
-    "!**/test"
+    "!**/__mocks__"
   ],
   "scripts": {
     "test": "jest",
