@@ -1,13 +1,13 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { NativeModules, type ViewStyle } from 'react-native';
+import { NativeModules, ViewStyle } from 'react-native';
 import PublisherComponent, {
-  type DisconnectType,
-  type ConnectionFailedType,
-  type ConnectionStartedType,
-  type ConnectionSuccessType,
-  type NewBitrateReceivedType,
-  type StreamStateChangedType,
-  type BluetoothDeviceStatusChangedType,
+  DisconnectType,
+  ConnectionFailedType,
+  ConnectionStartedType,
+  ConnectionSuccessType,
+  NewBitrateReceivedType,
+  StreamStateChangedType,
+  BluetoothDeviceStatusChangedType,
 } from './Component';
 import type {
   RTMPPublisherRefProps,
