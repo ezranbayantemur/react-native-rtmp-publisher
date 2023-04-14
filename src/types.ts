@@ -79,12 +79,14 @@ export type StreamStatus =
   | 'CONNECTING'
   | 'CONNECTED'
   | 'DISCONNECTED'
+  | 'CLOSED'
   | 'FAILED';
 
 export enum StreamState {
   CONNECTING = 'CONNECTING',
   CONNECTED = 'CONNECTED',
   DISCONNECTED = 'DISCONNECTED',
+  CLOSED = 'CLOSED',
   FAILED = 'FAILED',
 }
 export enum BluetoothDeviceStatuses {
