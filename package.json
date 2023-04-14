@@ -18,6 +18,7 @@
     "!lib/commonjs/test",
     "!lib/module/test",
     "!lib/typescript/test",
+    "!src/test",
     "!android/build",
     "!ios/build",
     "!**/__tests__",
