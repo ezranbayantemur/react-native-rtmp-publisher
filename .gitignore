@@ -65,3 +65,6 @@ android/keystores/debug.keystore
 lib/
 example/.env
 .env
+
+package/
+react-native-rtmp-publisher*.tgz

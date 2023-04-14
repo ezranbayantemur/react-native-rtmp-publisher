@@ -1,19 +1,20 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { NativeModules, type ViewStyle } from 'react-native';
+import { NativeModules, ViewStyle } from 'react-native';
 import PublisherComponent, {
-  type DisconnectType,
-  type ConnectionFailedType,
-  type ConnectionStartedType,
-  type ConnectionSuccessType,
-  type NewBitrateReceivedType,
-  type StreamStateChangedType,
-  type BluetoothDeviceStatusChangedType,
+  DisconnectType,
+  ConnectionFailedType,
+  ConnectionStartedType,
+  ConnectionSuccessType,
+  NewBitrateReceivedType,
+  StreamStateChangedType,
+  BluetoothDeviceStatusChangedType,
 } from './Component';
 import type {
   RTMPPublisherRefProps,
   StreamState,
   BluetoothDeviceStatuses,
   AudioInputType,
+  VideoSettingsType,
 } from './types';
 
 const RTMPModule = NativeModules.RTMPPublisher;
@@ -22,6 +23,10 @@ export interface RTMPPublisherProps {
   style?: ViewStyle;
   streamURL: string;
   streamName: string;
+  /**
+   * Video settings for video
+   */
+  videoSettings?: VideoSettingsType;
   /**
    * Callback for connection fails on RTMP server
    */
@@ -96,6 +101,9 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
     const setAudioInput = (audioInput: AudioInputType) =>
       RTMPModule.setAudioInput(audioInput);
 
+    const setVideoSettings = async (videoSettings: VideoSettingsType) =>
+      RTMPModule.setVideoSettings(videoSettings);
+
     const handleOnConnectionFailed = (e: ConnectionFailedType) => {
       onConnectionFailed && onConnectionFailed(e.nativeEvent.data);
     };
@@ -142,6 +150,7 @@ const RTMPPublisher = forwardRef<RTMPPublisherRefProps, RTMPPublisherProps>(
       switchCamera,
       toggleFlash,
       setAudioInput,
+      setVideoSettings,
     }));
 
     return (
