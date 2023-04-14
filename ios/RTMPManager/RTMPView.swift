@@ -49,6 +49,9 @@ class RTMPView: UIView {
         )
     }
   }
+    
+    private var retryCount: Int = 0
+    private static let maxRetryCount: Int = 10
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -80,12 +83,21 @@ class RTMPView: UIView {
     RTMPCreator.stream.attachCamera(AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back))
 
     RTMPCreator.connection.addEventListener(.rtmpStatus, selector: #selector(statusHandler), observer: self)
+    RTMPCreator.connection.addEventListener(.ioError, selector: #selector(rtmpErrorHandler), observer: self)
 
     hkView.attachStream(RTMPCreator.stream)
 
     self.addSubview(hkView)
       
 }
+    
+    @objc
+    private func rtmpErrorHandler(_ notification: Notification) {
+        print("rtmpErrorHandler", notification)
+
+        changeStreamState(status: "I/O ERROR")
+        RTMPCreator.connection.connect(streamURL as String)
+    }
     
     required init?(coder aDecoder: NSCoder) {
        fatalError("init(coder:) has not been implemented")
@@ -108,6 +120,7 @@ class RTMPView: UIView {
          if onConnectionSuccess != nil {
               onConnectionSuccess!(nil)
             }
+           retryCount = 0
            changeStreamState(status: "CONNECTING")
            RTMPCreator.stream.publish(streamName as String)
            break
@@ -117,12 +130,15 @@ class RTMPView: UIView {
               onConnectionFailed!(nil)
             }
            changeStreamState(status: "FAILED")
+           reconnect()
            break
          
        case RTMPConnection.Code.connectClosed.rawValue:
          if onDisconnect != nil {
               onDisconnect!(nil)
             }
+           changeStreamState(status: "CLOSED")
+           reconnect()
            break
          
        case RTMPStream.Code.publishStart.rawValue:
@@ -133,8 +149,19 @@ class RTMPView: UIView {
            break
          
        default:
+           changeStreamState(status: code)
            break
        }
+    }
+    
+    public func reconnect(){
+        guard retryCount <= RTMPView.maxRetryCount else {
+         return
+        }
+        Thread.sleep(forTimeInterval: pow(2.0, Double(retryCount)))
+        RTMPCreator.connection.connect(streamURL as String)
+        RTMPCreator.stream.publish(streamURL as String)
+        retryCount += 1
     }
 
     public func changeStreamState(status: String){
