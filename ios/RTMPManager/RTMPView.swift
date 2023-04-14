@@ -160,7 +160,6 @@ class RTMPView: UIView {
         }
         Thread.sleep(forTimeInterval: pow(2.0, Double(retryCount)))
         RTMPCreator.connection.connect(streamURL as String)
-        RTMPCreator.stream.publish(streamURL as String)
         retryCount += 1
     }
 
