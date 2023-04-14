@@ -34,7 +34,9 @@
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
-    "build":"yarn prepare && yarn pack"
+    "build":"yarn prepare && yarn pack",
+    "unpack":"for file in react-native-rtmp-publisher*.tgz; do tar -xzf \"$file\"; done",
+    "deletePackage":"rm -r package"
   },
   "keywords": [
     "react-native",
