@@ -31,12 +31,11 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "release": "dotenv release-it --",
-    "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
-    "bootstrap": "yarn example && yarn && yarn pods",
-    "build":"yarn prepare && yarn pack",
-    "unpack":"for file in react-native-rtmp-publisher*.tgz; do tar -xzf \"$file\"; done",
-    "deletePackage":"rm -r package && rm -r react-native-rtmp-publisher*.tgz"
+    "bootstrap": "pnpm install example && npx pod-install example/ios ",
+    "build": "pnpm prepare && pnpm pack",
+    "unpack": "for file in react-native-rtmp-publisher*.tgz; do tar -xzf \"$file\"; done",
+    "deletePackage": "rm -r package && rm -r react-native-rtmp-publisher*.tgz"
   },
   "keywords": [
     "react-native",
